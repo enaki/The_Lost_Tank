@@ -7,10 +7,9 @@ public class Assets {
 
     public static BufferedImage player, soil, grass, tree, water, mountain;
 
-    public static BufferedImage wood;
-
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] btn_start;
+    public static BufferedImage[] basic_bullet;
 
     public static void init(){
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/player_spritesheet.png"));
@@ -20,9 +19,6 @@ public class Assets {
         water = ImageLoader.loadImage("/textures/water.png");
         grass = ImageLoader.loadImage("/textures/grass.png");
         mountain = ImageLoader.loadImage("/textures/mountain.png");
-
-        wood = ImageLoader.loadImage("/textures/wood.png");
-
 
         SpriteSheet btn_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/start_2.png"));
         btn_start = new BufferedImage[2];
@@ -53,7 +49,11 @@ public class Assets {
         player_up[2] = sheet.crop(width * 2, height * 3, width, height);
         player_up[3] = sheet.crop(width * 3, height * 3, width, height);
 
-
+        basic_bullet = new BufferedImage[4];
+        basic_bullet[0] = ImageLoader.loadImage("/textures/bullet/bullet_up.png");
+        basic_bullet[1] = ImageLoader.loadImage("/textures/bullet/bullet_right.png");
+        basic_bullet[2] = ImageLoader.loadImage("/textures/bullet/bullet_down.png");
+        basic_bullet[3] = ImageLoader.loadImage("/textures/bullet/bullet_left.png");
     }
 
 }

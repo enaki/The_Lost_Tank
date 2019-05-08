@@ -1,10 +1,10 @@
 package World;
 
+import Bullet.BulletManager;
 import Entity.Creature.Player;
 import Entity.EntityManager;
 import Entity.Static_Entity.Tree;
 import Game.*;
-import Item.ItemManager;
 import Tile.Tile;
 import Utils.Utils;
 
@@ -15,7 +15,15 @@ public class World {
     private int width, height, spawnX, spawnY;
     private int[][] tiles;
     private EntityManager entityManager;
-    private ItemManager itemManager;
+    private BulletManager bulletManager;
+
+    public BulletManager getBulletManager() {
+        return bulletManager;
+    }
+
+    public void setBulletManager(BulletManager bulletManager) {
+        this.bulletManager = bulletManager;
+    }
 
     public EntityManager getEntityManager() {
         return entityManager;
@@ -27,9 +35,10 @@ public class World {
 
     public World(Handler handler, String path){
         this.handler = handler;
+        bulletManager = new BulletManager(handler);
         entityManager = new EntityManager(handler, new Player(handler, 100, 100));
         entityManager.addEntity(new Tree(handler, 100, 100));
-        itemManager = new ItemManager(handler);
+
         loadWorld(path);
 
         entityManager.getPlayer().setX(spawnX);
@@ -38,8 +47,8 @@ public class World {
     }
 
     public void tick(){
-        itemManager.tick();
         entityManager.tick();
+        bulletManager.tick();
     }
 
     public void render(Graphics g){
@@ -52,9 +61,8 @@ public class World {
                 getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH - handler.getGameCamera().getxOffset()), (int) (y * Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
             }
         }
-
-        itemManager.render(g);
         entityManager.render(g);
+        bulletManager.render(g);
     }
 
     public Tile getTile(int x, int y){
@@ -104,19 +112,4 @@ public class World {
         return height;
     }
 
-    public Handler getHandler() {
-        return handler;
-    }
-
-    public void setHandler(Handler handler) {
-        this.handler = handler;
-    }
-
-    public ItemManager getItemManager() {
-        return itemManager;
-    }
-
-    public void setItemManager(ItemManager itemManager) {
-        this.itemManager = itemManager;
-    }
 }

@@ -1,7 +1,6 @@
 package Entity.Static_Entity;
 import Game.Assets;
 import Game.Handler;
-import Item.Item;
 import Tile.*;
 
 import java.awt.*;
@@ -13,7 +12,7 @@ public class Tree extends Static_Entity {
 
     @Override
     public void die() {
-        handler.getWorld().getItemManager().addItem(Item.woodItem.createNew((int)x, (int)y));
+
     }
 
     @Override

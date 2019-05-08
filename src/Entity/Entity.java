@@ -4,6 +4,7 @@ import Game.*;
 
 import java.awt.*;
 
+
 public abstract class Entity {
     public static final int DEFAULT_HEALTH = 10;
 
@@ -35,7 +36,6 @@ public abstract class Entity {
         health -= amount;
         if (health <= 0){
             active = false;
-            die();
         }
 
     }

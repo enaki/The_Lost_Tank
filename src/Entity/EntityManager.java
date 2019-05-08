@@ -6,7 +6,6 @@ import Game.Handler;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 
 public class EntityManager {
     private Handler handler;
@@ -56,14 +55,9 @@ public class EntityManager {
     }
 
     public void tick(){
-        Iterator<Entity> it = entities.iterator();
-
-        while(it.hasNext()){
-            Entity e = it.next();
+        for (int i = 0; i < entities.size(); i++){
+            Entity e = entities.get(i);
             e.tick();
-            if (!e.isActive()){
-                it.remove();
-            }
         }
         entities.sort(renderSorter);
     }
