@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Player extends Creature{
-    private final int const_speed = 100;
+    private final int const_speed = 5;
     private Animation animationDown, animationLeft, animationRight, animationUp;
     //Atack timer
     private long lastAttackTimer, attackCooldown = 500, attackTimer = attackCooldown;
@@ -21,12 +21,18 @@ public class Player extends Creature{
         bounds.width = 32;
         bounds.height = 32;
 
-        animationDown = new Animation(const_speed, Assets.player_down);
-        animationLeft = new Animation(const_speed, Assets.player_left);
-        animationRight = new Animation(const_speed, Assets.player_right);
-        animationUp = new Animation(const_speed, Assets.player_up);
+//        animationDown = new Animation(const_speed, Assets.player_down);
+//        animationLeft = new Animation(const_speed, Assets.player_left);
+//        animationRight = new Animation(const_speed, Assets.player_right);
+//        animationUp = new Animation(const_speed, Assets.player_up);
 
-        current_direction = Current_Direction.left;
+        animationUp = new Animation(const_speed, Assets.robot[0]);
+        animationRight = new Animation(const_speed, Assets.robot[1]);
+        animationDown = new Animation(const_speed, Assets.robot[2]);
+        animationLeft = new Animation(const_speed, Assets.robot[3]);
+
+
+        current_direction = Current_Direction.down;
 
     }
 
@@ -56,22 +62,25 @@ public class Player extends Creature{
         if (handler.getKeyManager().up) {
             yMove = -speed;
             current_direction = Current_Direction.up;
+            return;
         }
         if (handler.getKeyManager().down) {
             yMove = speed;
             current_direction = Current_Direction.down;
+            return;
         }
 
         if (handler.getKeyManager().left) {
             xMove = -speed;
             current_direction = Current_Direction.left;
+            return;
         }
 
         if (handler.getKeyManager().right) {
             xMove = speed;
             current_direction = Current_Direction.right;
+            return;
         }
-
 
     }
 
@@ -93,11 +102,11 @@ public class Player extends Creature{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width*3/2, height*3/2, null);
         g.setColor(Color.RED);
-        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
-                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
-                bounds.width, bounds.height);
+//        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+//                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
+//                bounds.width, bounds.height);
     }
 
     private BufferedImage getCurrentAnimationFrame(){
@@ -115,15 +124,15 @@ public class Player extends Creature{
         }
         else{
             if (current_direction == Current_Direction.up){
-                return Assets.player_up[0];
+                return Assets.robot[0][4];
             }
             if (current_direction == Current_Direction.right){
-                return Assets.player_right[0];
+                return Assets.robot[1][4];
             }
-            if (current_direction == Current_Direction.left){
-                return Assets.player_left[0];
+            if (current_direction == Current_Direction.down){
+                return Assets.robot[2][4];
             }
-            return Assets.player_down[0];
+            return Assets.robot[3][4];
         }
     }
 }
