@@ -1,16 +1,17 @@
 package Entity.Creature;
 
 import Entity.Current_Direction;
-import Game.Assets;
 import Game.*;
 import Bullet.Bullet;
 import Tile.Tile;
+import Entity.Types.Entity_Types;
 
 import java.awt.*;
 import java.util.Random;
 
-import static Entity.Dimensions.Bounds_Dimensions.*;
-import static Entity.Dimensions.Bounds_Dimensions.Player_level_1_bounds_height;
+import static Entity.Dimensions.Tank_Type_Bounds_Dimensions.*;
+import static Entity.Types.Bullet_Appereance_Offset.Bullet_Appereance_Types.*;
+import static Entity.Types.Entity_Types.TankSpeed;
 
 public class Enemy extends Shooter{
     protected long lastMoveTimer, moveCoolDown = 2000, moveTimer = moveCoolDown;
@@ -18,21 +19,24 @@ public class Enemy extends Shooter{
     public Enemy(Handler handler, float x, float y, Entity_Types.Tank_Type tank_type)
     {
         super(handler, x, y);
-        this.images = Entity_Types.TankImages(tank_type);
-        this.attackCooldown = Entity_Types.TankAttackTime(tank_type);
-        this.speed = Entity_Types.TankSpeed(tank_type);
-        this.health = Entity_Types.TankHealth(tank_type);
-        bounds.x = Player_level_1_bounds_x;
-        bounds.y = Player_level_1_bounds_y;
-        bounds.width = Player_level_1_bounds_width;
-        bounds.height = Player_level_1_bounds_height;
+        this.tank_type = tank_type;
+        this.speed = TankSpeed(tank_type);
+        this.images = Entity_Types.TankImages(this.tank_type);
+        this.attackCooldown = Entity_Types.TankAttackTime(this.tank_type);
+        this.speed = TankSpeed(this.tank_type);
+        this.health = Entity_Types.TankHealth(this.tank_type);
+        this.bullet_type = Entity_Types.GetBulletType(this.tank_type);
+        this.moveCoolDown = Entity_Types.MoveCoolDown(this.tank_type);
+        bounds.x = GetBoundsX(this.tank_type);
+        bounds.y = GetBoundsY(this.tank_type);
+        bounds.width = GetBoundsWidth(this.tank_type);
+        bounds.height = GetBoundsHeight(this.tank_type);
 
         current_direction = Current_Direction.down;
     }
 
     @Override
-    public void die() {
-        System.out.println("You Lose");
+    public void die(){
     }
 
     @Override
@@ -53,27 +57,34 @@ public class Enemy extends Shooter{
         if (moveTimer < moveCoolDown){
             return;
         }
-        System.out.println("Generez miscare");
         xMove = 0;
         yMove = 0;
-        n = rand.nextInt(100);
+        n = rand.nextInt(110);
         if (n < 25) {
             yMove = -speed;
             current_direction = Current_Direction.up;
+            set_Bounds_Dimension(true);
         }else
         if (n < 50) {
             yMove = speed;
             current_direction = Current_Direction.down;
+            set_Bounds_Dimension(true);
         } else
 
         if (n < 75) {
             xMove = -speed;
             current_direction = Current_Direction.left;
+            set_Bounds_Dimension(false);
         } else
 
         if (n < 100) {
             xMove = speed;
             current_direction = Current_Direction.right;
+            set_Bounds_Dimension(false);
+        }
+        else if (n < 110){
+            xMove = 0;
+            yMove = 0;
         }
         moveTimer = 0;
     }
@@ -81,10 +92,16 @@ public class Enemy extends Shooter{
     protected void checkAttacks(){
         attackTimer += System.currentTimeMillis() - lastAttackTimer;
         lastAttackTimer = System.currentTimeMillis();
-        if (attackTimer < attackCooldown){
+        if (attackTimer < attackCooldown) {
             return;
         }
-        handler.getWorld().getBulletManager().addBullet(new Bullet(handler, current_direction, x + bounds.x , y + bounds.y, Assets.bullet_2, 1, false ));
+        if (tank_type == Entity_Types.Tank_Type.tank_4){
+            handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, quarter));
+            handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, threequarter));
+        }
+        else {
+            handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, middle));
+        }
 
         attackTimer = 0;
     }
@@ -92,69 +109,10 @@ public class Enemy extends Shooter{
     @Override
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-        g.setColor(Color.RED);
-//        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+//        g.setColor(Color.YELLOW);
+//        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //                bounds.width, bounds.height);
-    }
-
-    public void move(){
-        if (checkEntityCollisions(xMove, 0f)){
-            xMove = -xMove;
-        }
-        if (checkEntityCollisions(0f, yMove)){
-            yMove = -yMove;
-        }
-        moveX();
-        moveY();
-
-    }
-
-    public void moveX(){
-        if (xMove >0){
-            int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILEWIDTH;
-            if (!collisionWithTile(tx, (int) (y + bounds.y)/ Tile.TILEHEIGHT) &&
-                    !collisionWithTile(tx, (int) (y + bounds.y + bounds.height)/ Tile.TILEHEIGHT)){
-                x += xMove;
-            }
-            else{
-                xMove = -xMove;
-            }
-        }
-        else if (xMove < 0){
-            int tx = (int) (x + xMove + bounds.x) / Tile.TILEWIDTH;
-            if (!collisionWithTile(tx, (int) (y + bounds.y)/ Tile.TILEHEIGHT) &&
-                    !collisionWithTile(tx, (int) (y + bounds.y + bounds.height)/ Tile.TILEHEIGHT)){
-                x += xMove;
-            }
-            else{
-                xMove = -xMove;
-            }
-        }
-    }
-
-    public void moveY(){
-        if (yMove < 0){
-            int ty = (int) (y + yMove + bounds.y) / Tile.TILEHEIGHT;
-            if (!collisionWithTile((int) (x + bounds.x) / Tile.TILEWIDTH, ty) &&
-                    !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty)){
-                y += yMove;
-            }
-            else{
-                yMove = -yMove;
-            }
-        }
-        else if (yMove > 0){
-            int ty = (int) (y + yMove + bounds.y + bounds.height) / Tile.TILEHEIGHT;
-            if (!collisionWithTile((int) (x + bounds.x) / Tile.TILEWIDTH, ty) &&
-                    !collisionWithTile((int) (x + bounds.x + bounds.width) / Tile.TILEWIDTH, ty)){
-                y += yMove;
-            }
-            else{
-                yMove = -yMove;
-            }
-        }
-
     }
 
 }

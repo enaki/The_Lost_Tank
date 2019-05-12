@@ -45,4 +45,8 @@ public class BulletManager {
     public void removeBullet(Bullet block){
         bullets.remove(block);
     }
+
+    public LinkedList<Bullet> getBullets() {
+        return bullets;
+    }
 }

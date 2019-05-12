@@ -1,12 +1,13 @@
 package Entity;
 
+import Entity.Creature.Player;
 import Game.*;
 
 import java.awt.*;
 
 
 public abstract class Entity {
-    public static final int DEFAULT_HEALTH = 10;
+    public static final int DEFAULT_HEALTH = 40;
 
 
     protected float x, y;
@@ -34,9 +35,16 @@ public abstract class Entity {
     public abstract void die();
 
     public void hurt(int amount){
+
         health -= amount;
         if (health <= 0){
             active = false;
+            die();
+
+        }
+
+        if (this instanceof Player){
+            System.out.println("Health" + health);
         }
 
     }
@@ -100,6 +108,22 @@ public abstract class Entity {
 
     public Rectangle getCollisionBounds(float xOffset, float yOffset){
         return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width, bounds.height);
+    }
+
+    public int getBoundsX() {
+        return bounds.x;
+    }
+
+    public int getBoundsY() {
+        return bounds.y;
+    }
+
+    public int getBoundsWidth() {
+        return bounds.width;
+    }
+
+    public int getBoundsHeight() {
+        return bounds.height;
     }
 
     public abstract void tick();

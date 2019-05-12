@@ -2,13 +2,14 @@ package World;
 
 import Bullet.BulletManager;
 import Entity.Creature.Enemy;
+import Entity.Creature.EnemyWithAnimations;
 import Entity.Creature.Player;
 import Entity.EntityManager;
 import Entity.Static_Entity.Tree;
 import Game.*;
 import Tile.Tile;
 import Utils.Utils;
-import static Entity.Creature.Entity_Types.Tank_Type.*;
+import static Entity.Types.Entity_Types.Tank_Type.*;
 
 import java.awt.*;
 
@@ -19,7 +20,7 @@ public class World {
     private int[][] tiles;
     private EntityManager entityManager;
     private BulletManager bulletManager;
-
+    private int PlayerSpawnX, PlayerSpawnY;
     public BulletManager getBulletManager() {
         return bulletManager;
     }
@@ -40,22 +41,12 @@ public class World {
         this.handler = handler;
         bulletManager = new BulletManager(handler);
         entityManager = new EntityManager(handler);
-        entityManager.addPlayer(new Player(handler, 100, 100));
-        entityManager.addEntity(new Enemy(handler, 260, 160, tank_1));
-        entityManager.addEntity(new Enemy(handler, 460, 360, tank_4));
-
-        entityManager.addEntity(new Tree(handler, 100, 100));
-
         loadWorld(path);
-
-        entityManager.getPlayer().setX(spawnX);
-        entityManager.getPlayer().setY(spawnY);
-
     }
 
     public void tick(){
-        entityManager.tick();
         bulletManager.tick();
+        entityManager.tick();
     }
 
     public void render(Graphics g){
@@ -101,9 +92,38 @@ public class World {
                         temp = Tile.grassTile.getId();
                         entityManager.addEntity(new Tree(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
                         break;
+                    case -1 :
+                        temp = Tile.grassTile.getId();
+                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_1));
+                        break;
+                    case -2 :
+                        temp = Tile.grassTile.getId();
+                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_2));
+                        break;
+                    case -3 :
+                        temp = Tile.grassTile.getId();
+                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_3));
+                        break;
+                    case -4 :
+                        temp = Tile.grassTile.getId();
+                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_4));
+                        break;
+                    case -5 :
+                        temp = Tile.grassTile.getId();
+                        entityManager.addEntity(new EnemyWithAnimations(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, robot));
+                        break;
+                    case 11 :
+                        temp = Tile.dirtTile.getId();
+                        entityManager.addPlayer(new Player(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, player_level_1));
+//                        entityManager.getPlayer().setX(spawnX);
+//                        entityManager.getPlayer().setY(spawnY);
+                        break;
+                    case 12 :
+                        temp = Tile.dirtTile.getId();
+                        entityManager.addPlayer(new Player(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, player_level_2));
+                        break;
                     default:
                         break;
-
                 }
                 tiles[x][y] = temp;
             }

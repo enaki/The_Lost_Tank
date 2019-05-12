@@ -9,7 +9,7 @@ public class Assets {
 
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] btn_start;
-    public static BufferedImage[] bullet_1, bullet_2;
+    public static BufferedImage[] bullet_1, bullet_2, bullet_3, bullet_4, bullet_5;
     public static BufferedImage[][] robot;
     public static BufferedImage[] tank_1, tank_2, tank_3, tank_4, player_level_1, player_level_2;
     public static BufferedImage[] bullet_explosion_animation;
@@ -107,6 +107,24 @@ public class Assets {
         bullet_2[1] = ImageLoader.loadImage("/textures/bullet/bullet_2/bullet_2_right.png");
         bullet_2[2] = ImageLoader.loadImage("/textures/bullet/bullet_2/bullet_2_down.png");
         bullet_2[3] = ImageLoader.loadImage("/textures/bullet/bullet_2/bullet_2_left.png");
+
+        bullet_3 = new BufferedImage[4];
+        bullet_3[0] = ImageLoader.loadImage("/textures/bullet/bullet_3/bullet_3_up.png");
+        bullet_3[1] = ImageLoader.loadImage("/textures/bullet/bullet_3/bullet_3_right.png");
+        bullet_3[2] = ImageLoader.loadImage("/textures/bullet/bullet_3/bullet_3_down.png");
+        bullet_3[3] = ImageLoader.loadImage("/textures/bullet/bullet_3/bullet_3_left.png");
+
+        bullet_4 = new BufferedImage[4];
+        bullet_4[0] = ImageLoader.loadImage("/textures/bullet/bullet_4/bullet_4_up.png");
+        bullet_4[1] = ImageLoader.loadImage("/textures/bullet/bullet_4/bullet_4_right.png");
+        bullet_4[2] = ImageLoader.loadImage("/textures/bullet/bullet_4/bullet_4_down.png");
+        bullet_4[3] = ImageLoader.loadImage("/textures/bullet/bullet_4/bullet_4_left.png");
+
+        bullet_5 = new BufferedImage[4];
+        bullet_5[0] = ImageLoader.loadImage("/textures/bullet/bullet_5/bullet_5_up.png");
+        bullet_5[1] = ImageLoader.loadImage("/textures/bullet/bullet_5/bullet_5_right.png");
+        bullet_5[2] = ImageLoader.loadImage("/textures/bullet/bullet_5/bullet_5_down.png");
+        bullet_5[3] = ImageLoader.loadImage("/textures/bullet/bullet_5/bullet_5_left.png");
 
         bullet_explosion_animation = new BufferedImage[16];
         for (int i = 0; i < 4; i++){

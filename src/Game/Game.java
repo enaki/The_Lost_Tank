@@ -6,7 +6,6 @@ import State.*;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 public class Game implements Runnable {
     private Display display;
@@ -14,6 +13,19 @@ public class Game implements Runnable {
     public String title;
     private Thread thread;
     private boolean running_flag = false;
+    private BufferStrategy bs;
+    private Graphics g;
+    //States
+    public State gameState;
+    public State menuState;
+    //Camera
+    private GameCamera gameCamera;
+    //Input
+    private KeyManager keyManager;
+    private MouseManager mouseManager;
+    //Handler
+    private Handler handler;
+
 
     public int getWidth() {
         return width;
@@ -23,32 +35,12 @@ public class Game implements Runnable {
         return height;
     }
 
-    private BufferStrategy bs;
-    private Graphics g;
-    private BufferedImage testImage;
-
-    //States
-    public State gameState;
-    public State menuState;
-
-    //Camera
-    private GameCamera gameCamera;
-
-    //Input
-    private KeyManager keyManager;
-    private MouseManager mouseManager;
-
-    //Handler
-    private Handler handler;
-
-
-
     public Game(String title, int width, int height){
         this.width = width;
         this.height = height;
         this.title = title;
         keyManager = new KeyManager();
-        mouseManager = new MouseManager();
+        mouseManager = new MouseManager(handler);
     }
 
     private void init(){
@@ -144,8 +136,6 @@ public class Game implements Runnable {
         g.clearRect(0,0,width,height);
 
         //Start Drawing
-        //g.drawImage(testImage, 0, 0, null);
-        //g.drawImage(Assets.grass, x, y, null);
         if (State.getState() != null){
             State.getState().render(g);
         }

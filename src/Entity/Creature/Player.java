@@ -1,32 +1,39 @@
 package Entity.Creature;
 import Entity.Current_Direction;
-import Game.Assets;
+import Entity.Types.Bullet_Types;
+import Entity.Types.Entity_Types;
 import Game.*;
 import Bullet.Bullet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static Entity.Dimensions.Bounds_Dimensions.*;
+
+import static Entity.Types.Bullet_Appereance_Offset.Bullet_Appereance_Types.*;
+
+import static Entity.Dimensions.Tank_Type_Bounds_Dimensions.*;
+import static Entity.Types.Entity_Types.*;
 
 public class Player extends Shooter{
-    //private Animation animationDown, animationLeft, animationRight, animationUp;
-
-    public Player(Handler handler, float x, float y)
+//    private Animation animationDown, animationLeft, animationRight, animationUp;
+    public Player(Handler handler, float x, float y, Entity_Types.Tank_Type tank_type)
     {
         super(handler, x, y);
-        images = Assets.player_level_1;
-        bounds.x = Player_level_1_bounds_x;
-        bounds.y = Player_level_1_bounds_y;
-        bounds.width = Player_level_1_bounds_width;
-        bounds.height = Player_level_1_bounds_height;
+        EnemyBullet = false;
+
+        this.speed = TankSpeed(tank_type);
+        this.tank_type = tank_type;
+        this.bullet_type = Entity_Types.GetBulletType(this.tank_type);
+        images = Entity_Types.TankImages(this.tank_type);
+        bounds.x = GetBoundsX(this.tank_type);
+        bounds.y = GetBoundsY(this.tank_type);
+        bounds.width = GetBoundsWidth(this.tank_type);
+        bounds.height = GetBoundsHeight(this.tank_type);
+        this.health = TankHealth(this.tank_type);
+        this.attackCooldown = TankAttackTime(tank_type);
 //        animationDown = new Animation(const_speed, Assets.player_down);
 //        animationLeft = new Animation(const_speed, Assets.player_left);
 //        animationRight = new Animation(const_speed, Assets.player_right);
 //        animationUp = new Animation(const_speed, Assets.player_up);
 
-//        animationUp = new Animation(const_speed, Assets.tank_1);
-//        animationRight = new Animation(const_speed, Assets.robot[1]);
-//        animationDown = new Animation(const_speed, Assets.robot[2]);
-//        animationLeft = new Animation(const_speed, Assets.robot[3]);
         current_direction = Current_Direction.down;
     }
 
@@ -79,7 +86,6 @@ public class Player extends Shooter{
             set_Bounds_Dimension(false);
             return;
         }
-
     }
 
     protected void checkAttacks(){
@@ -89,8 +95,15 @@ public class Player extends Shooter{
             return;
         }
 
-        if (handler.getKeyManager().space)
-            handler.getWorld().getBulletManager().addBullet(new Bullet(handler, current_direction, x , y, Assets.bullet_2, 1, true));
+        if (handler.getKeyManager().space) {
+            if (tank_type == Entity_Types.Tank_Type.player_level_2) {
+                handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, Bullet_Types.Bullet_Type.bullet_3, middle));
+                handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, one_seventeenth));
+                handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, six_seventeenth));
+            } else {
+                handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, middle));
+            }
+        }
         else{
             return;
         }

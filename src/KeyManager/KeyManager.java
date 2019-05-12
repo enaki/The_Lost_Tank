@@ -9,7 +9,7 @@ public class KeyManager implements KeyListener {
     public boolean up, down, left, right;
     public boolean space;
 
-    public boolean aUp, aDown, aLeft, aRight;
+    public boolean esc;
 
     public KeyManager(){
         keys = new boolean[256];
@@ -22,11 +22,8 @@ public class KeyManager implements KeyListener {
         right = keys[KeyEvent.VK_D];
 
         space = keys[KeyEvent.VK_SPACE];
+        esc = keys[KeyEvent.VK_ESCAPE];
 
-        aUp = keys[KeyEvent.VK_UP];
-        aDown = keys[KeyEvent.VK_DOWN];
-        aLeft = keys[KeyEvent.VK_LEFT];
-        aRight = keys[KeyEvent.VK_RIGHT];
     }
 
     @Override
@@ -36,13 +33,13 @@ public class KeyManager implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         keys[e.getKeyCode()] = true;
-        System.out.println("Pressed!");
+//        System.out.println("Pressed!");
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         keys[e.getKeyCode()] = false;
-        System.out.println("Released!");
+//        System.out.println("Released!");
 
     }
 }
