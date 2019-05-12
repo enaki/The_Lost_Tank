@@ -12,4 +12,8 @@ public class MountainTile extends Tile {
     public boolean isSolid(){
         return true;
     }
+
+    public boolean isNotTraverseble() {
+        return true;
+    }
 }

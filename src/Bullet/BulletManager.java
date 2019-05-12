@@ -1,36 +1,48 @@
 package Bullet;
 
+import Entity.Entity;
 import Game.Handler;
 
 import java.awt.*;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class BulletManager {
-    private LinkedList<Bullet> b = new LinkedList<Bullet>();
+    private LinkedList<Bullet> bullets = new LinkedList<Bullet>();
     Handler handler;
-    Bullet TempBullet;
 
     public BulletManager(Handler handler){
         this.handler = handler;
     }
 
     public void tick(){
-        for (int i = 0; i < b.size(); i++){
-            b.get(i).tick();
+        Iterator<Bullet> it = bullets.iterator();
+
+        while(it.hasNext()){
+            Bullet b = it.next();
+            b.tick();
+            if (!b.isActive()){
+                b.die();
+                it.remove();
+            }
+        }
+
+        for (int i = 0; i < bullets.size(); i++){
+            bullets.get(i).tick();
         }
     }
 
     public void render(Graphics g){
-        for (int i = 0; i < b.size(); i++){
-            b.get(i).render(g);
+        for (int i = 0; i < bullets.size(); i++){
+            bullets.get(i).render(g);
         }
     }
 
     public void addBullet(Bullet block){
-        b.add(block);
+        bullets.add(block);
     }
 
     public void removeBullet(Bullet block){
-        b.remove(block);
+        bullets.remove(block);
     }
 }

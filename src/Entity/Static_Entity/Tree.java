@@ -23,6 +23,9 @@ public class Tree extends Static_Entity {
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.tree, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-
+        g.setColor(Color.RED);
+//        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+//                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
+//                bounds.width, bounds.height);
     }
 }

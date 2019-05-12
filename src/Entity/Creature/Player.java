@@ -5,35 +5,29 @@ import Game.*;
 import Bullet.Bullet;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import static Entity.Dimensions.Bounds_Dimensions.*;
 
-public class Player extends Creature{
-    private final int const_speed = 5;
-    private Animation animationDown, animationLeft, animationRight, animationUp;
-    //Atack timer
-    private long lastAttackTimer, attackCooldown = 500, attackTimer = attackCooldown;
-    private Current_Direction current_direction;
+public class Player extends Shooter{
+    //private Animation animationDown, animationLeft, animationRight, animationUp;
 
     public Player(Handler handler, float x, float y)
     {
-        super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
-        bounds.x = 16;
-        bounds.y = 32;
-        bounds.width = 32;
-        bounds.height = 32;
-
+        super(handler, x, y);
+        images = Assets.player_level_1;
+        bounds.x = Player_level_1_bounds_x;
+        bounds.y = Player_level_1_bounds_y;
+        bounds.width = Player_level_1_bounds_width;
+        bounds.height = Player_level_1_bounds_height;
 //        animationDown = new Animation(const_speed, Assets.player_down);
 //        animationLeft = new Animation(const_speed, Assets.player_left);
 //        animationRight = new Animation(const_speed, Assets.player_right);
 //        animationUp = new Animation(const_speed, Assets.player_up);
 
-        animationUp = new Animation(const_speed, Assets.robot[0]);
-        animationRight = new Animation(const_speed, Assets.robot[1]);
-        animationDown = new Animation(const_speed, Assets.robot[2]);
-        animationLeft = new Animation(const_speed, Assets.robot[3]);
-
-
+//        animationUp = new Animation(const_speed, Assets.tank_1);
+//        animationRight = new Animation(const_speed, Assets.robot[1]);
+//        animationDown = new Animation(const_speed, Assets.robot[2]);
+//        animationLeft = new Animation(const_speed, Assets.robot[3]);
         current_direction = Current_Direction.down;
-
     }
 
     @Override
@@ -43,15 +37,15 @@ public class Player extends Creature{
 
     @Override
     public void tick() {
-       animationDown.tick();
-       animationLeft.tick();
-       animationRight.tick();
-       animationUp.tick();
+//       animationDown.tick();
+//       animationLeft.tick();
+//       animationRight.tick();
+//       animationUp.tick();
 
-       getInput();
-       move();
-       handler.getGameCamera().centerOnEntity(this);
-       checkAttacks();
+        getInput();
+        move();
+        handler.getGameCamera().centerOnEntity(this);
+        checkAttacks();
 
     }
 
@@ -62,29 +56,33 @@ public class Player extends Creature{
         if (handler.getKeyManager().up) {
             yMove = -speed;
             current_direction = Current_Direction.up;
+            set_Bounds_Dimension(true);
             return;
         }
         if (handler.getKeyManager().down) {
             yMove = speed;
             current_direction = Current_Direction.down;
+            set_Bounds_Dimension(true);
             return;
         }
 
         if (handler.getKeyManager().left) {
             xMove = -speed;
             current_direction = Current_Direction.left;
+            set_Bounds_Dimension(false);
             return;
         }
 
         if (handler.getKeyManager().right) {
             xMove = speed;
             current_direction = Current_Direction.right;
+            set_Bounds_Dimension(false);
             return;
         }
 
     }
 
-    private void checkAttacks(){
+    protected void checkAttacks(){
         attackTimer += System.currentTimeMillis() - lastAttackTimer;
         lastAttackTimer = System.currentTimeMillis();
         if (attackTimer < attackCooldown){
@@ -92,7 +90,7 @@ public class Player extends Creature{
         }
 
         if (handler.getKeyManager().space)
-            handler.getWorld().getBulletManager().addBullet(new Bullet(handler, current_direction, x + bounds.x , y + bounds.y ));
+            handler.getWorld().getBulletManager().addBullet(new Bullet(handler, current_direction, x , y, Assets.bullet_2, 1, true));
         else{
             return;
         }
@@ -102,37 +100,12 @@ public class Player extends Creature{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width*3/2, height*3/2, null);
+        g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         g.setColor(Color.RED);
-//        g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
-//                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
-//                bounds.width, bounds.height);
+        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
+                bounds.width, bounds.height);
+        //g.drawOval((int)x,(int) y, 10, 10);
     }
 
-    private BufferedImage getCurrentAnimationFrame(){
-        if (xMove < 0){
-            return animationLeft.getCurrentFrame();
-        }
-        else if(xMove > 0){
-            return animationRight.getCurrentFrame();
-        }
-        else if (yMove < 0){
-            return animationUp.getCurrentFrame();
-        }
-        else if (yMove > 0){
-            return animationDown.getCurrentFrame();
-        }
-        else{
-            if (current_direction == Current_Direction.up){
-                return Assets.robot[0][4];
-            }
-            if (current_direction == Current_Direction.right){
-                return Assets.robot[1][4];
-            }
-            if (current_direction == Current_Direction.down){
-                return Assets.robot[2][4];
-            }
-            return Assets.robot[3][4];
-        }
-    }
 }

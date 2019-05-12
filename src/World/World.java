@@ -1,14 +1,17 @@
 package World;
 
 import Bullet.BulletManager;
+import Entity.Creature.Enemy;
 import Entity.Creature.Player;
 import Entity.EntityManager;
 import Entity.Static_Entity.Tree;
 import Game.*;
 import Tile.Tile;
 import Utils.Utils;
+import static Entity.Creature.Entity_Types.Tank_Type.*;
 
 import java.awt.*;
+
 
 public class World {
     private Handler handler;
@@ -36,7 +39,11 @@ public class World {
     public World(Handler handler, String path){
         this.handler = handler;
         bulletManager = new BulletManager(handler);
-        entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+        entityManager = new EntityManager(handler);
+        entityManager.addPlayer(new Player(handler, 100, 100));
+        entityManager.addEntity(new Enemy(handler, 260, 160, tank_1));
+        entityManager.addEntity(new Enemy(handler, 460, 360, tank_4));
+
         entityManager.addEntity(new Tree(handler, 100, 100));
 
         loadWorld(path);

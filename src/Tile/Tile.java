@@ -40,4 +40,8 @@ public class Tile {
     }
 
 
+    public boolean isNotTraverseble() {
+        return false;
+    }
+
 }

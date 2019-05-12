@@ -9,14 +9,18 @@ public class Assets {
 
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] btn_start;
-    public static BufferedImage[] basic_bullet;
+    public static BufferedImage[] bullet_1, bullet_2;
     public static BufferedImage[][] robot;
-    public static BufferedImage basic_bullet_1;
-    public static BufferedImage basic_bullet_2;
+    public static BufferedImage[] tank_1, tank_2, tank_3, tank_4, player_level_1, player_level_2;
+    public static BufferedImage[] bullet_explosion_animation;
 
     public static void init(){
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/player_spritesheet.png"));
         SpriteSheet robot_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/tank/robot.png"));
+        SpriteSheet tanks_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/tank/spritesheet.png"));
+        SpriteSheet explosion_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/tank/spritesheet.png"));
+
+
         player = sheet.crop(width * 0, height * 0, width, height);
         soil = ImageLoader.loadImage("/textures/soil.png");
         tree = ImageLoader.loadImage("/textures/tree.png");
@@ -34,6 +38,36 @@ public class Assets {
             for (int j = 0; j < robot[0].length; j++){
                 robot[i][j] = robot_sheet.crop(width * j, height * 2*i, width, height);
             }
+        }
+
+        tank_1 = new BufferedImage[4];
+        for (int i = 0; i < tank_1.length; i++){
+            tank_1[i] = tanks_sheet.crop(width * i, height * 0, width, height);
+        }
+
+        tank_2 = new BufferedImage[4];
+        for (int i = 0; i < tank_2.length; i++){
+            tank_2[i] = tanks_sheet.crop(width * (4 + i), height * 0, width, height);
+        }
+
+        tank_3 = new BufferedImage[4];
+        for (int i = 0; i < tank_3.length; i++){
+            tank_3[i] = tanks_sheet.crop(width * i, height * 1, width, height);
+        }
+
+        tank_4 = new BufferedImage[4];
+        for (int i = 0; i < tank_4.length; i++){
+            tank_4[i] = tanks_sheet.crop(width * (4 + i), height * 1, width, height);
+        }
+
+        player_level_1 = new BufferedImage[4];
+        for (int i = 0; i < player_level_1.length; i++){
+            player_level_1[i] = tanks_sheet.crop(2*width * i, 2*height * 1, 2*width, 2*height);
+        }
+
+        player_level_2 = new BufferedImage[4];
+        for (int i = 0; i < player_level_2.length; i++){
+            player_level_2[i] = tanks_sheet.crop(2*width * i, 2*height * 2, 2*width, 2*height);
         }
 
         //Alta sprite sheet
@@ -62,11 +96,24 @@ public class Assets {
 //        player_up[2] = sheet.crop(width * 2, height * 3, width, height);
 //        player_up[3] = sheet.crop(width * 3, height * 3, width, height);
 
-        basic_bullet = new BufferedImage[4];
-        basic_bullet[0] = ImageLoader.loadImage("/textures/bullet/bullet_up.png");
-        basic_bullet[1] = ImageLoader.loadImage("/textures/bullet/bullet_right.png");
-        basic_bullet[2] = ImageLoader.loadImage("/textures/bullet/bullet_down.png");
-        basic_bullet[3] = ImageLoader.loadImage("/textures/bullet/bullet_left.png");
+        bullet_1 = new BufferedImage[4];
+        bullet_1[0] = ImageLoader.loadImage("/textures/bullet/bullet_1/bullet_1_up.png");
+        bullet_1[1] = ImageLoader.loadImage("/textures/bullet/bullet_1/bullet_1_right.png");
+        bullet_1[2] = ImageLoader.loadImage("/textures/bullet/bullet_1/bullet_1_down.png");
+        bullet_1[3] = ImageLoader.loadImage("/textures/bullet/bullet_1/bullet_1_left.png");
+
+        bullet_2 = new BufferedImage[4];
+        bullet_2[0] = ImageLoader.loadImage("/textures/bullet/bullet_2/bullet_2_up.png");
+        bullet_2[1] = ImageLoader.loadImage("/textures/bullet/bullet_2/bullet_2_right.png");
+        bullet_2[2] = ImageLoader.loadImage("/textures/bullet/bullet_2/bullet_2_down.png");
+        bullet_2[3] = ImageLoader.loadImage("/textures/bullet/bullet_2/bullet_2_left.png");
+
+        bullet_explosion_animation = new BufferedImage[16];
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 4; j++){
+                bullet_explosion_animation[4*i+j] = explosion_sheet.crop(width * i, height * j, width, height);
+            }
+        }
 
     }
 

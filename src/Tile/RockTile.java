@@ -12,4 +12,8 @@ public class RockTile extends Tile {
         return true;
     }
 
+    public boolean isNotTraverseble() {
+        return true;
+    }
+
 }
