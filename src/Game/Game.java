@@ -18,6 +18,8 @@ public class Game implements Runnable {
     //States
     public State gameState;
     public State menuState;
+    public State helpState;
+
     //Camera
     private GameCamera gameCamera;
     //Input
@@ -57,7 +59,9 @@ public class Game implements Runnable {
         Assets.init();
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
-        State.setState(menuState);
+        helpState = new HelpState(handler);
+
+        State.setState(helpState);
 
     }
 
@@ -140,8 +144,6 @@ public class Game implements Runnable {
             State.getState().render(g);
         }
         //End Drawing
-
-
         bs.show();
         g.dispose();
 

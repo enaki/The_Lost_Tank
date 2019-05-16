@@ -5,6 +5,7 @@ import Entity.Types.Entity_Types;
 import Game.Animation;
 import Game.Assets;
 import Game.Handler;
+import Item.Item;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -65,4 +66,23 @@ public class EnemyWithAnimations extends Enemy {
         }
     }
 
+    @Override
+    public void addItem(Item item) {
+        switch(item.getId()){
+            case 0:
+            case 1:
+                this.health += 100;
+                break;
+            case 2:
+                this.health += 200;
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void die(){
+        handler.getWorld().getItemManager().addItem(Item.upgraded_chest.createNew((int)x, (int)y));
+    }
 }

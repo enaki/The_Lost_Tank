@@ -3,6 +3,7 @@ package Entity.Creature;
 import Entity.Current_Direction;
 import Game.*;
 import Bullet.Bullet;
+import Item.Item;
 import Tile.Tile;
 import Entity.Types.Entity_Types;
 
@@ -18,25 +19,20 @@ public class Enemy extends Shooter{
 
     public Enemy(Handler handler, float x, float y, Entity_Types.Tank_Type tank_type)
     {
-        super(handler, x, y);
-        this.tank_type = tank_type;
-        this.speed = TankSpeed(tank_type);
-        this.images = Entity_Types.TankImages(this.tank_type);
-        this.attackCooldown = Entity_Types.TankAttackTime(this.tank_type);
-        this.speed = TankSpeed(this.tank_type);
-        this.health = Entity_Types.TankHealth(this.tank_type);
-        this.bullet_type = Entity_Types.GetBulletType(this.tank_type);
+        super(handler, x, y, tank_type);
         this.moveCoolDown = Entity_Types.MoveCoolDown(this.tank_type);
-        bounds.x = GetBoundsX(this.tank_type);
-        bounds.y = GetBoundsY(this.tank_type);
-        bounds.width = GetBoundsWidth(this.tank_type);
-        bounds.height = GetBoundsHeight(this.tank_type);
-
-        current_direction = Current_Direction.down;
     }
 
     @Override
     public void die(){
+        Random rand = new Random();
+        int n = rand.nextInt(100);
+        if (n < 25){
+            handler.getWorld().getItemManager().addItem(Item.gold_chest.createNew((int)x, (int)y));
+        }
+        else if (n < 50){
+            handler.getWorld().getItemManager().addItem(Item.health_chest.createNew((int)x, (int)y));
+        }
     }
 
     @Override
@@ -49,9 +45,9 @@ public class Enemy extends Shooter{
 
         Random rand = new Random();
         int n = rand.nextInt(2);
-        if (n == 0){
-            checkAttacks();
-        }
+//        if (n == 0){
+//            checkAttacks();
+//        }
         moveTimer += System.currentTimeMillis() - lastMoveTimer;
         lastMoveTimer = System.currentTimeMillis();
         if (moveTimer < moveCoolDown){
@@ -104,6 +100,22 @@ public class Enemy extends Shooter{
         }
 
         attackTimer = 0;
+    }
+
+    @Override
+    public void addItem(Item item) {
+        switch(item.getId()){
+            case 0:
+            case 1:
+                this.health += 50;
+                break;
+            case 2:
+                this.tank_type = Entity_Types.Tank_Type.tank_4;
+                init();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override

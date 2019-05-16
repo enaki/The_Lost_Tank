@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class MenuState extends State {
 
-    private UIManager uiManager;
     public Rectangle playButton, helpButton, exitButton;
+    private UIManager uiManager;
 
     public MenuState(Handler handler){
 

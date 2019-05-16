@@ -5,7 +5,8 @@ import java.awt.image.BufferedImage;
 public class Assets {
     private static final int width = 64, height = 64;
 
-    public static BufferedImage player, soil, grass, tree, water, mountain;
+    public static BufferedImage player, soil, grass, tree, water, mountain, heart, enemy_counter, number_of_coins, townGrass, townGrassDestroyed;
+    public static BufferedImage gold_chest, health_chest, upgrade_chest;
 
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] btn_start;
@@ -22,16 +23,25 @@ public class Assets {
 
 
         player = sheet.crop(width * 0, height * 0, width, height);
-        soil = ImageLoader.loadImage("/textures/soil.png");
-        tree = ImageLoader.loadImage("/textures/tree.png");
-        water = ImageLoader.loadImage("/textures/water.png");
-        grass = ImageLoader.loadImage("/textures/grass.png");
-        mountain = ImageLoader.loadImage("/textures/mountain.png");
+        soil = ImageLoader.loadImage("/textures/tiles/soil.png");
+        tree = ImageLoader.loadImage("/textures/tiles/tree.png");
+        water = ImageLoader.loadImage("/textures/tiles/water.png");
+        grass = ImageLoader.loadImage("/textures/tiles/grass.png");
+        townGrass = ImageLoader.loadImage("/textures/tiles/townGrass.png");
+        townGrassDestroyed = ImageLoader.loadImage("/textures/tiles/townGrassDestroyed.png");
+        mountain = ImageLoader.loadImage("/textures/tiles/mountain.png");
+        heart = ImageLoader.loadImage("/textures/other/heart.png");
+        enemy_counter = ImageLoader.loadImage("/textures/other/enemy.png");
+        number_of_coins = ImageLoader.loadImage("/textures/other/coin.png");
 
-        SpriteSheet btn_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/start_2.png"));
-        btn_start = new BufferedImage[2];
-        btn_start[0] = btn_sheet.crop(width * 0, height * 1, width * 4, height * 1);
-        btn_start[1] = btn_sheet.crop(width * 0, height * 2, width * 4, height * 1);
+        gold_chest = ImageLoader.loadImage("/textures/chest/gold_chest.png");
+        health_chest = ImageLoader.loadImage("/textures/chest/health_chest.png");
+        upgrade_chest = ImageLoader.loadImage("/textures/chest/upgrade_chest.png");
+
+//        SpriteSheet btn_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/start_2.png"));
+//        btn_start = new BufferedImage[2];
+//        btn_start[0] = btn_sheet.crop(width * 0, height * 1, width * 4, height * 1);
+//        btn_start[1] = btn_sheet.crop(width * 0, height * 2, width * 4, height * 1);
 
         robot = new BufferedImage[4][16];
         for (int i = 0; i < robot.length; i++){
@@ -134,5 +144,4 @@ public class Assets {
         }
 
     }
-
 }

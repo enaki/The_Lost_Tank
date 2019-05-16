@@ -13,9 +13,9 @@ public class Entity_Types {
     public static Bullet_Types.Bullet_Type GetBulletType(Tank_Type tank_type) {
         switch (tank_type){
             case tank_1:
+            case player_level_1:
                 return Bullet_Types.Bullet_Type.bullet_1;
             case tank_2:
-            case player_level_1:
                 return Bullet_Types.Bullet_Type.bullet_2;
             case tank_3:
                 return Bullet_Types.Bullet_Type.bullet_3;
@@ -56,11 +56,11 @@ public class Entity_Types {
             case tank_3:
                 return 70;
             case tank_4:
-                return 100;
-            case player_level_1:
                 return 120;
+            case player_level_1:
+                return 100;
             case player_level_2:
-                return 200;
+                return 150;
             case robot:
                 return 300;
         }

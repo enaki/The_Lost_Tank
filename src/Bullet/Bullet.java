@@ -1,6 +1,5 @@
 package Bullet;
 
-import Entity.Creature.Creature;
 import Entity.Creature.Enemy;
 import Entity.Creature.Shooter;
 import Entity.Current_Direction;
@@ -9,6 +8,7 @@ import Entity.Types.Bullet_Appereance_Offset;
 import Entity.Types.Bullet_Types;
 import Entity.Types.Bullet_Appereance_Offset.Bullet_Appereance_Types;
 import Game.Handler;
+import Item.Item;
 import Tile.Tile;
 import static Entity.Types.Bullet_Types.*;
 
@@ -84,6 +84,7 @@ public class Bullet  extends Entity {
             }
         }
 
+
         for (Entity e : handler.getWorld().getEntityManager().getEntities()){
             if (e.equals(hostShooter) ){
                 continue;
@@ -121,6 +122,7 @@ public class Bullet  extends Entity {
 //        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //                bounds.width, bounds.height);
+
 
     }
 
@@ -183,6 +185,7 @@ public class Bullet  extends Entity {
     protected boolean collisionWithTile(int x, int y){
         return handler.getWorld().getTile(x, y).isNotTraverseble();
     }
+
 
 
 }

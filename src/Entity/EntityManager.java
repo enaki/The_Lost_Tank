@@ -1,6 +1,7 @@
 package Entity;
 
 import Entity.Creature.Player;
+import Entity.Creature.Shooter;
 import Game.Handler;
 
 import java.awt.*;
@@ -12,7 +13,11 @@ public class EntityManager {
     private Handler handler;
     private Player player;
     private ArrayList<Entity> entities;
+    protected int counter = 0;
 
+    public int getCounter() {
+        return counter;
+    }
 
     private Comparator<Entity> renderSorter = new Comparator<Entity>(){
         @Override
@@ -65,6 +70,9 @@ public class EntityManager {
             Entity e = it.next();
             e.tick();
             if (!e.isActive()){
+                if ((e instanceof Shooter) && !(e instanceof Player)){
+                    counter--;
+                }
                 it.remove();
             }
         }
@@ -78,6 +86,9 @@ public class EntityManager {
     }
 
     public void addEntity(Entity e){
+        if ((e instanceof Shooter) && !(e instanceof Player)){
+            counter++;
+        }
         entities.add(e);
     }
 }

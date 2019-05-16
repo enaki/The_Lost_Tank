@@ -35,18 +35,17 @@ public abstract class Entity {
     public abstract void die();
 
     public void hurt(int amount){
-
-        health -= amount;
-        if (health <= 0){
-            active = false;
-            die();
-
+        if (health > 0) {
+            health -= amount;
+            if (health <= 0) {
+                active = false;
+                die();
+            }
         }
 
         if (this instanceof Player){
             System.out.println("Health" + health);
         }
-
     }
 
     public int getWidth() {

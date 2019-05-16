@@ -10,7 +10,7 @@ public class Tile {
     public static Tile waterTile = new WaterTile(2);
     public static Tile treeTile = new TreeTile(3);
     public static Tile mountainTile = new MountainTile(4);
-   // public static Tile townTile = new TownTile(5);
+    //public static Tile townTile = new TownTile(5);
 
 
     public static final int TILEWIDTH = 64, TILEHEIGHT = 64;

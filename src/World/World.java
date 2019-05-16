@@ -5,8 +5,10 @@ import Entity.Creature.Enemy;
 import Entity.Creature.EnemyWithAnimations;
 import Entity.Creature.Player;
 import Entity.EntityManager;
+import Entity.Static_Entity.Town;
 import Entity.Static_Entity.Tree;
 import Game.*;
+import Item.ItemManager;
 import Tile.Tile;
 import Utils.Utils;
 import static Entity.Types.Entity_Types.Tank_Type.*;
@@ -24,6 +26,8 @@ public class World {
     public BulletManager getBulletManager() {
         return bulletManager;
     }
+    private ItemManager itemManager;
+
 
     public void setBulletManager(BulletManager bulletManager) {
         this.bulletManager = bulletManager;
@@ -41,12 +45,22 @@ public class World {
         this.handler = handler;
         bulletManager = new BulletManager(handler);
         entityManager = new EntityManager(handler);
+        itemManager = new ItemManager(handler);
+        loadWorld(path);
+    }
+
+    public void setWorld(String path){
+        bulletManager = new BulletManager(handler);
+        entityManager = new EntityManager(handler);
+        itemManager = new ItemManager(handler);
         loadWorld(path);
     }
 
     public void tick(){
         bulletManager.tick();
         entityManager.tick();
+        itemManager.tick();
+
     }
 
     public void render(Graphics g){
@@ -60,6 +74,7 @@ public class World {
             }
         }
         entityManager.render(g);
+        itemManager.render(g);
         bulletManager.render(g);
     }
 
@@ -88,6 +103,10 @@ public class World {
             for (int x = 0; x < width; x++){
                 int temp = Utils.parseInt(tokens[(x + y * width) + 4]);
                 switch(temp){
+                    case 5 :
+                        temp = Tile.grassTile.getId();
+                        entityManager.addEntity(new Town(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
+                        break;
                     case 3 :
                         temp = Tile.grassTile.getId();
                         entityManager.addEntity(new Tree(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
@@ -139,4 +158,11 @@ public class World {
         return height;
     }
 
+    public ItemManager getItemManager() {
+        return itemManager;
+    }
+
+    public void setItemManager(ItemManager itemManager) {
+        this.itemManager = itemManager;
+    }
 }
