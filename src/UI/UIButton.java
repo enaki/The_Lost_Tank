@@ -1,5 +1,4 @@
 package UI;
-
 import java.awt.*;
 
 public class UIButton extends UIObject{
@@ -11,12 +10,8 @@ public class UIButton extends UIObject{
         this.clicker = clicker;
         this.text = text;
     }
-
-
-
     @Override
     public void tick() {
-
     }
 
     @Override

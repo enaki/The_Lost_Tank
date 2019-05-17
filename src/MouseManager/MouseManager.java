@@ -1,10 +1,7 @@
 package MouseManager;
 
 import Game.Handler;
-import State.State;
 import UI.UIManager;
-
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -57,6 +54,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
         else if (e.getButton() == MouseEvent.BUTTON3){
             rightPressed = true;
         }
+
     }
 
     @Override

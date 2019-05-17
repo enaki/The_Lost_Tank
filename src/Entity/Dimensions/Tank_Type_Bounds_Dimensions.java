@@ -13,7 +13,7 @@ public class Tank_Type_Bounds_Dimensions {
             case tank_4:
                 return 6;
             case robot:
-                return 10;
+                return 8;
             case player_level_2:
             case player_level_1:
                 return 6;
@@ -30,6 +30,8 @@ public class Tank_Type_Bounds_Dimensions {
             case tank_3:
             case tank_4:
                 return 5;
+            case robot:
+                return 8;
             default:
                 return 6;
         }
@@ -55,7 +57,7 @@ public class Tank_Type_Bounds_Dimensions {
 //            case tank_1:
 //                return 50;
             case robot:
-                return 90;
+                return 80;
             case player_level_2:
             case player_level_1:
             default:

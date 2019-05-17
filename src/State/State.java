@@ -6,7 +6,6 @@ import UI.UIManager;
 import java.awt.*;
 
 public abstract class State {
-
     private static State currentState = null;
 
     protected Handler handler;
@@ -19,10 +18,10 @@ public abstract class State {
 
 
     public static void setState(State state){
-        state.setUIManagerActive(true);
         if (!(state instanceof GameState)){
-            state.SetUIManagerForMouseManager(state.getUiManager());
+            state.setUIManagerActive(true);
         }
+        state.SetUIManagerForMouseManager(state.getUiManager());
         currentState = state;
     }
 

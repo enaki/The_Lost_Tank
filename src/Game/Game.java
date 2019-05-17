@@ -15,6 +15,7 @@ public class Game implements Runnable {
     private boolean running_flag = false;
     private BufferStrategy bs;
     private Graphics g;
+    private int fps;
     //States
     public GameState gameState;
     public State menuState, helpState, winState, loseState, intermediateState, intermediateMenuState;
@@ -114,6 +115,7 @@ public class Game implements Runnable {
             }
             if (timer >= 1000000000){
                 System.out.println("Ticks and Frames : " + ticks);
+                this.fps = ticks;
                 ticks = 0;
                 timer = 0;
             }
@@ -152,5 +154,9 @@ public class Game implements Runnable {
         if (State.getState() != null){
             State.getState().tick();
         }
+    }
+
+    public int GetFps(){
+        return fps;
     }
 }

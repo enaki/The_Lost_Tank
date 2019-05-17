@@ -12,14 +12,10 @@ public class MenuState extends State {
     protected UIManager uiManager;
 
     public MenuState(Handler handler){
-
         super(handler);
-
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUIManager(uiManager);
         isUIManagerActive = true;
-
-
 
         //Play Button
         uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 90, 230, 180, 50, () -> {

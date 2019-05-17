@@ -47,6 +47,7 @@ public class GameState extends State {
     @Override
     public void tick() {
         if (handler.getWorld().getEntityManager().getCounter() == 0){
+
             if (current_level == level_4){
                 State.setState(handler.getGame().winState);
             }
@@ -69,6 +70,8 @@ public class GameState extends State {
         playerBar.render(g);
 
         g.drawString(GetLevelName(current_level), handler.getWidth()/2-30, 30);
+        g.setColor(Color.yellow);
+        g.drawString(Integer.toString(handler.getGame().GetFps()), handler.getWidth()-30, 30);
     }
 
 }

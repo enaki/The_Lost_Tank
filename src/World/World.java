@@ -2,18 +2,14 @@ package World;
 
 import Bullet.BulletManager;
 import Entity.AnimationObjects.AnimationManager;
-import Entity.Creature.Enemy;
-import Entity.Creature.EnemyWithAnimations;
 import Entity.Creature.Player;
+import Entity.EntityFactory;
 import Entity.EntityManager;
-import Entity.Static_Entity.Town;
-import Entity.Static_Entity.Tree;
 import Game.*;
 import Item.ItemManager;
 import State.Utils.Levels;
 import Tile.Tile;
 import Utils.Utils;
-import static Entity.Types.Entity_Types.Tank_Type.*;
 import static State.Utils.Levels.GetLevelWorld;
 
 import java.awt.*;
@@ -31,6 +27,7 @@ public class World {
     }
     private ItemManager itemManager;
     private AnimationManager animationManager;
+    private EntityFactory entityFactory;
 
     public AnimationManager getAnimationManager() {
         return animationManager;
@@ -58,6 +55,7 @@ public class World {
         entityManager = new EntityManager(handler);
         itemManager = new ItemManager(handler);
         animationManager = new AnimationManager(handler);
+        entityFactory = new EntityFactory(handler);
         loadWorld(GetLevelWorld(level));
     }
 
@@ -119,34 +117,54 @@ public class World {
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
                 int temp = Utils.parseInt(tokens[(x + y * width) + 4]);
+//                switch(temp){
+//                    case 5 :
+//                        temp = Tile.grassTile.getId();
+//                        entityManager.addEntity(new Town(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
+//                        break;
+//                    case 3 :
+//                        temp = Tile.grassTile.getId();
+//                        entityManager.addEntity(new Tree(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
+//                        break;
+//                    case -1 :
+//                        temp = Tile.grassTile.getId();
+//                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_1));
+//                        break;
+//                    case -2 :
+//                        temp = Tile.grassTile.getId();
+//                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_2));
+//                        break;
+//                    case -3 :
+//                        temp = Tile.grassTile.getId();
+//                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_3));
+//                        break;
+//                    case -4 :
+//                        temp = Tile.grassTile.getId();
+//                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_4));
+//                        break;
+//                    case -5 :
+//                        temp = Tile.grassTile.getId();
+//                        entityManager.addEntity(new EnemyWithAnimations(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, robot));
+//                        break;
+//                    case 11 :
+//                        temp = Tile.dirtTile.getId();
+//                        entityManager.addPlayer(new Player(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
+////                        entityManager.getPlayer().setX(spawnX);
+////                        entityManager.getPlayer().setY(spawnY);
+//                        break;
+//                    default:
+//                        break;
+//                }
                 switch(temp){
                     case 5 :
-                        temp = Tile.grassTile.getId();
-                        entityManager.addEntity(new Town(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
-                        break;
                     case 3 :
-                        temp = Tile.grassTile.getId();
-                        entityManager.addEntity(new Tree(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
-                        break;
                     case -1 :
-                        temp = Tile.grassTile.getId();
-                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_1));
-                        break;
                     case -2 :
-                        temp = Tile.grassTile.getId();
-                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_2));
-                        break;
                     case -3 :
-                        temp = Tile.grassTile.getId();
-                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_3));
-                        break;
                     case -4 :
-                        temp = Tile.grassTile.getId();
-                        entityManager.addEntity(new Enemy(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, tank_4));
-                        break;
                     case -5 :
+                        entityManager.addEntity(entityFactory.ProduceEntity(temp, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
                         temp = Tile.grassTile.getId();
-                        entityManager.addEntity(new EnemyWithAnimations(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, robot));
                         break;
                     case 11 :
                         temp = Tile.dirtTile.getId();
@@ -160,7 +178,6 @@ public class World {
                 tiles[x][y] = temp;
             }
         }
-
     }
 
     public int getWidth(){
