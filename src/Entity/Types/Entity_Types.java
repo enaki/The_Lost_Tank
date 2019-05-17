@@ -86,18 +86,18 @@ public class Entity_Types {
     public static long TankAttackTime(Tank_Type e){
         switch (e){
             case tank_1:
+                return 500;
+            case tank_2:
+                return 550;
+            case tank_3:
             case player_level_2:
                 return 600;
-            case tank_2:
-                return 700;
-            case tank_3:
-                return 800;
             case tank_4:
-                return 900;
+                return 650;
             case player_level_1:
                 return 300;
             case robot:
-                return 500;
+                return 400;
         }
         return 500;
     }

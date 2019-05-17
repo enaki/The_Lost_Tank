@@ -9,7 +9,7 @@ import UI.UIManager;
 import java.awt.*;
 
 public class MenuState extends State {
-    private UIManager uiManager;
+    protected UIManager uiManager;
 
     public MenuState(Handler handler){
 
@@ -19,22 +19,25 @@ public class MenuState extends State {
         handler.getMouseManager().setUIManager(uiManager);
         isUIManagerActive = true;
 
+
+
         //Play Button
-        uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 50, 150, 100, 50, () -> {
+        uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 90, 230, 180, 50, () -> {
             isUIManagerActive = false;
+            hasGameStarted = true;
+            handler.getGame().gameState.startNewGame();
             State.setState(handler.getGame().gameState);
-        }, "Play"));
+        }, "New Game"));
         //Help Button
-        uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 50, 250, 100, 50, () -> {
+        uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 90, 310, 180, 50, () -> {
             isUIManagerActive = false;
             State.setState(handler.getGame().helpState);
         }, "Help"));
         //Exit Button
-        uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 50, 350, 100, 50, () -> {
+        uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 90, 390, 180, 50, () -> {
             isUIManagerActive = false;
             System.exit(0);
         }, "Exit"));
-
     }
 
     public UIManager getUiManager() {

@@ -26,8 +26,14 @@ public class HelpState extends State {
 
         uiManager.addObject(new UIButton(handler.getGame().getWidth() / 2 - 140, handler.getGame().getHeight()-100, 280, 50, () -> {
             isUIManagerActive = false;
-            handler.getGame().menuState.setUIManagerActive(true);
-            State.setState(handler.getGame().menuState);
+            if (hasGameStarted){
+                handler.getGame().intermediateMenuState.setUIManagerActive(true);
+                State.setState(handler.getGame().intermediateMenuState);
+            }
+            else{
+                handler.getGame().menuState.setUIManagerActive(true);
+                State.setState(handler.getGame().menuState);
+            }
         }, "Return To Menu"));
     }
 
@@ -37,8 +43,14 @@ public class HelpState extends State {
             uiManager.tick();
         }
         if (handler.getKeyManager().esc){
-            handler.getGame().menuState.setUIManagerActive(true);
-            State.setState(handler.getGame().menuState);
+            if (hasGameStarted){
+                handler.getGame().intermediateMenuState.setUIManagerActive(true);
+                State.setState(handler.getGame().intermediateMenuState);
+            }
+            else{
+                handler.getGame().menuState.setUIManagerActive(true);
+                State.setState(handler.getGame().menuState);
+            }
         }
     }
 

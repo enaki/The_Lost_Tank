@@ -1,10 +1,7 @@
 package State;
-
-import Game.Assets;
 import Game.Handler;
 import UI.UIButton;
 import UI.UIManager;
-
 import java.awt.*;
 
 import static State.Utils.Levels.GetLevelName;
@@ -19,9 +16,9 @@ public class IntermediateState extends State {
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUIManager(uiManager);
         isUIManagerActive = true;
-
-        uiManager.addObject(new UIButton(handler.getGame().getWidth() / 2 - 140, handler.getGame().getHeight() - 100, 210, 50, () -> {
+        uiManager.addObject(new UIButton(handler.getGame().getWidth() / 2 - 105, handler.getGame().getHeight() - 100, 210, 50, () -> {
             isUIManagerActive = false;
+            handler.getGame().gameState.startNextLevel();
             State.setState(handler.getGame().gameState);
         }, "Next Level"));
     }
@@ -31,7 +28,6 @@ public class IntermediateState extends State {
         if (isUIManagerActive) {
             uiManager.tick();
         }
-
     }
 
     @Override
@@ -43,7 +39,9 @@ public class IntermediateState extends State {
         Font fnt1 = new Font("Comic Sans MS", Font.BOLD, 25);
         g.setColor(Color.cyan);
         g.setFont(fnt1);
-        g.drawString(GetLevelName(previousLevel(GameState.current_level)) + " passed", handler.getWidth() / 2 - 120, handler.getHeight() / 2 - 50);
+        String text = GetLevelName(previousLevel(GameState.current_level)) + " passed";
+        int width = g.getFontMetrics().stringWidth(text);
+        g.drawString(text, handler.getWidth() / 2 - width/2, handler.getHeight() / 2 - 50);
     }
 
     public UIManager getUiManager() {

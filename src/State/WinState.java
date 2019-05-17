@@ -21,6 +21,7 @@ public class WinState extends State{
         uiManager.addObject(new UIButton(handler.getGame().getWidth() / 2 - 140, handler.getGame().getHeight()-100, 280, 50, () -> {
             isUIManagerActive = false;
             handler.getGame().menuState.setUIManagerActive(true);
+            hasGameStarted = false;
             State.setState(handler.getGame().menuState);
         }, "Return To Menu"));
     }
@@ -54,7 +55,6 @@ public class WinState extends State{
         int score = Player.GetScore();
         g.drawString("Score : " + score, handler.getWidth()/2-80, handler.getHeight()/2);
         g.drawImage(Assets.pikachu_happy, handler.getWidth()/2-70, handler.getHeight()/2+ 30 , 120, 145, null);
-
 
     }
     public UIManager getUiManager() {

@@ -140,6 +140,14 @@ public class Player extends Shooter{
     }
 
     public int getNumberOfCoins() {
-        return this.points;
+        return points;
+    }
+
+    public void setNumberOfCoins(int amount) {
+        points = amount;
+    }
+
+    public void setUpgrade_level(int level){
+        upgrade_level = level;
     }
 }

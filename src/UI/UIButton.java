@@ -28,11 +28,13 @@ public class UIButton extends UIObject{
         if (hovering){
             g2d.draw(bounds);
             g.setColor(Color.yellow);
-            g.drawString(text, bounds.x + 20, bounds.y + 30);
+            int width = g.getFontMetrics().stringWidth(text);
+            g.drawString(text, bounds.x + bounds.width/2 - width/2, bounds.y + 30);
 
         } else{
             g.setColor(Color.white);
-            g.drawString(text, bounds.x + 20, bounds.y + 30);
+            int width = g.getFontMetrics().stringWidth(text);
+            g.drawString(text, bounds.x + bounds.width/2 - width/2, bounds.y + 30);
             g2d.draw(bounds);
         }
 

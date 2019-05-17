@@ -20,7 +20,7 @@ public class Assets {
         SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/player_spritesheet.png"));
         SpriteSheet robot_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/tank/robot.png"));
         SpriteSheet tanks_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/tank/spritesheet.png"));
-        SpriteSheet explosion_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/tank/spritesheet.png"));
+        SpriteSheet explosion_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/bullet/explosion.png"));
 
 
         player = sheet.crop(width * 0, height * 0, width, height);

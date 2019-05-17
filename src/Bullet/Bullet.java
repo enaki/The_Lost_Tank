@@ -1,5 +1,6 @@
 package Bullet;
 
+import Entity.AnimationObjects.AnimationObject;
 import Entity.Creature.Enemy;
 import Entity.Creature.Shooter;
 import Entity.Current_Direction;
@@ -7,6 +8,7 @@ import Entity.Entity;
 import Entity.Types.Bullet_Appereance_Offset;
 import Entity.Types.Bullet_Types;
 import Entity.Types.Bullet_Appereance_Offset.Bullet_Appereance_Types;
+import Game.Assets;
 import Game.Handler;
 import Item.Item;
 import Tile.Tile;
@@ -102,7 +104,7 @@ public class Bullet  extends Entity {
 
     //@Override
     public void die() {
-
+        handler.getWorld().getAnimationManager().addAnimationObject(new AnimationObject(handler, x ,y));
     }
 
     public void tick(){

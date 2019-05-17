@@ -29,6 +29,21 @@ public class GameState extends State {
         return null;
     }
 
+    public void startNewGame(){
+        current_level = level_1;
+        handler.getWorld().getEntityManager().getPlayer().setNumberOfCoins(0);
+        handler.getWorld().getEntityManager().getPlayer().setUpgrade_level(0);
+
+        String path = GetLevelWorld(current_level);
+        world.setWorld(path);
+    }
+
+    public void startNextLevel(){
+        current_level = nextLevel(current_level);
+        String path = GetLevelWorld(current_level);
+        world.setWorld(path);
+    }
+
     @Override
     public void tick() {
         if (handler.getWorld().getEntityManager().getCounter() == 0){
@@ -36,16 +51,13 @@ public class GameState extends State {
                 State.setState(handler.getGame().winState);
             }
             else{
-                current_level = nextLevel(current_level);
-                String path = GetLevelWorld(current_level);
-                world.setWorld(path);
                 State.setState(handler.getGame().intermediateState);
             }
         }
 
         if (handler.getKeyManager().esc){
-            handler.getGame().menuState.setUIManagerActive(true);
-            State.setState(handler.getGame().menuState);
+            handler.getGame().intermediateMenuState.setUIManagerActive(true);
+            State.setState(handler.getGame().intermediateMenuState);
         }
         world.tick();
         playerBar.tick(handler.getWorld().getEntityManager().getPlayer().getHealth(), handler.getWorld().getEntityManager().getCounter(),handler.getWorld().getEntityManager().getPlayer().getNumberOfCoins() );

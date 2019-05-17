@@ -11,7 +11,7 @@ public abstract class State {
 
     protected Handler handler;
     boolean isUIManagerActive = false;
-
+    public static boolean hasGameStarted = false;
 
     public State(Handler handler){
         this.handler = handler;
@@ -50,7 +50,9 @@ public abstract class State {
         Font fnt0 = new Font("arial", Font.BOLD, 40);
         g.setFont(fnt0);
         g.setColor(Color.GREEN);
-        g.drawString("Mini-Tank", handler.getWidth()/2-120, 80);
+        String title = "Mini-Tank";
+        int width = g.getFontMetrics().stringWidth(title);
+        g.drawString(title, handler.getWidth()/2-width/2, 80);
     }
 
 }

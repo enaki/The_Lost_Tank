@@ -1,6 +1,7 @@
 package World;
 
 import Bullet.BulletManager;
+import Entity.AnimationObjects.AnimationManager;
 import Entity.Creature.Enemy;
 import Entity.Creature.EnemyWithAnimations;
 import Entity.Creature.Player;
@@ -29,7 +30,15 @@ public class World {
         return bulletManager;
     }
     private ItemManager itemManager;
+    private AnimationManager animationManager;
 
+    public AnimationManager getAnimationManager() {
+        return animationManager;
+    }
+
+    public void setAnimationManager(AnimationManager animationManager) {
+        this.animationManager = animationManager;
+    }
 
     public void setBulletManager(BulletManager bulletManager) {
         this.bulletManager = bulletManager;
@@ -48,6 +57,7 @@ public class World {
         bulletManager = new BulletManager(handler);
         entityManager = new EntityManager(handler);
         itemManager = new ItemManager(handler);
+        animationManager = new AnimationManager(handler);
         loadWorld(GetLevelWorld(level));
     }
 
@@ -55,6 +65,8 @@ public class World {
         bulletManager = new BulletManager(handler);
         entityManager = new EntityManager(handler);
         itemManager = new ItemManager(handler);
+        animationManager = new AnimationManager(handler);
+
         loadWorld(path);
     }
 
@@ -62,6 +74,8 @@ public class World {
         bulletManager.tick();
         entityManager.tick();
         itemManager.tick();
+        animationManager.tick();
+
 
     }
 
@@ -78,6 +92,7 @@ public class World {
         entityManager.render(g);
         itemManager.render(g);
         bulletManager.render(g);
+        animationManager.render(g);
     }
 
     public Tile getTile(int x, int y){

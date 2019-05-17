@@ -16,7 +16,8 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
     //States
-    public State gameState, menuState, helpState, winState, loseState, intermediateState;
+    public GameState gameState;
+    public State menuState, helpState, winState, loseState, intermediateState, intermediateMenuState;
     //Camera
     private GameCamera gameCamera;
     //Input
@@ -60,8 +61,8 @@ public class Game implements Runnable {
         winState = new WinState(handler);
         loseState = new LoseState(handler);
         intermediateState = new IntermediateState(handler);
-        State.setState(intermediateState);
-
+        intermediateMenuState = new IntermediateMenuState(handler);
+        State.setState(menuState);
     }
 
     public GameCamera getGameCamera(){
