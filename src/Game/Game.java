@@ -16,10 +16,7 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
     //States
-    public State gameState;
-    public State menuState;
-    public State helpState;
-
+    public State gameState, menuState, helpState, winState, loseState, intermediateState;
     //Camera
     private GameCamera gameCamera;
     //Input
@@ -42,7 +39,7 @@ public class Game implements Runnable {
         this.height = height;
         this.title = title;
         keyManager = new KeyManager();
-        mouseManager = new MouseManager(handler);
+        mouseManager = new MouseManager(null);
     }
 
     private void init(){
@@ -58,10 +55,12 @@ public class Game implements Runnable {
 
         Assets.init();
         gameState = new GameState(handler);
-        menuState = new MenuState(handler);
         helpState = new HelpState(handler);
-
-        State.setState(helpState);
+        menuState = new MenuState(handler);
+        winState = new WinState(handler);
+        loseState = new LoseState(handler);
+        intermediateState = new IntermediateState(handler);
+        State.setState(intermediateState);
 
     }
 
@@ -76,8 +75,6 @@ public class Game implements Runnable {
         thread = new Thread(this);
         thread.start();
     }
-
-
 
     public synchronized void stop(){
         if (!running_flag)

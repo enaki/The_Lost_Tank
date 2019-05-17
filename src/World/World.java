@@ -9,9 +9,11 @@ import Entity.Static_Entity.Town;
 import Entity.Static_Entity.Tree;
 import Game.*;
 import Item.ItemManager;
+import State.Utils.Levels;
 import Tile.Tile;
 import Utils.Utils;
 import static Entity.Types.Entity_Types.Tank_Type.*;
+import static State.Utils.Levels.GetLevelWorld;
 
 import java.awt.*;
 
@@ -41,12 +43,12 @@ public class World {
         this.entityManager = entityManager;
     }
 
-    public World(Handler handler, String path){
+    public World(Handler handler, Levels.Level level){
         this.handler = handler;
         bulletManager = new BulletManager(handler);
         entityManager = new EntityManager(handler);
         itemManager = new ItemManager(handler);
-        loadWorld(path);
+        loadWorld(GetLevelWorld(level));
     }
 
     public void setWorld(String path){
@@ -133,13 +135,9 @@ public class World {
                         break;
                     case 11 :
                         temp = Tile.dirtTile.getId();
-                        entityManager.addPlayer(new Player(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, player_level_1));
+                        entityManager.addPlayer(new Player(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
 //                        entityManager.getPlayer().setX(spawnX);
 //                        entityManager.getPlayer().setY(spawnY);
-                        break;
-                    case 12 :
-                        temp = Tile.dirtTile.getId();
-                        entityManager.addPlayer(new Player(handler, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT, player_level_2));
                         break;
                     default:
                         break;

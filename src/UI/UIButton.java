@@ -1,10 +1,8 @@
 package UI;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class UIButton extends UIObject{
-    private Rectangle rect;
     private ClickListener clicker;
     private String text;
 

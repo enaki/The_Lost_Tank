@@ -9,7 +9,7 @@ public class Tank_Type_Bounds_Dimensions {
             case tank_1:
             case tank_2:
             case tank_3:
-                return 10;
+//                return 10;
             case tank_4:
                 return 6;
             case robot:
@@ -25,10 +25,11 @@ public class Tank_Type_Bounds_Dimensions {
     public static int GetBoundsY(Entity_Types.Tank_Type tank_type){
         switch(tank_type){
 
+            case tank_1:
+            case tank_2:
+            case tank_3:
             case tank_4:
                 return 5;
-            case robot:
-                return 6;
             default:
                 return 6;
         }
@@ -39,7 +40,7 @@ public class Tank_Type_Bounds_Dimensions {
             case tank_1:
             case tank_2:
             case tank_3:
-                return 45;
+//                return 45;
             case tank_4:
                 return 52;
             case robot:
@@ -51,14 +52,14 @@ public class Tank_Type_Bounds_Dimensions {
 
     public static int GetBoundsHeight(Entity_Types.Tank_Type tank_type){
         switch(tank_type){
-            case tank_2:
-                return 50;
+//            case tank_1:
+//                return 50;
             case robot:
                 return 90;
             case player_level_2:
             case player_level_1:
             default:
-                return 52;
+                return 54;
         }
     }
 

@@ -5,31 +5,27 @@ import Entity.Types.Entity_Types;
 import Game.*;
 import Bullet.Bullet;
 import Item.Item;
+import State.State;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-
 import static Entity.Types.Bullet_Appereance_Offset.Bullet_Appereance_Types.*;
-
-import static Entity.Dimensions.Tank_Type_Bounds_Dimensions.*;
 import static Entity.Types.Entity_Types.*;
 
 public class Player extends Shooter{
     static private int points;
+    static private int upgrade_level = 0;
 
-    //    private Animation animationDown, animationLeft, animationRight, animationUp;
-    public Player(Handler handler, float x, float y, Entity_Types.Tank_Type tank_type)
+    public Player(Handler handler, float x, float y)
     {
-        super(handler, x, y, tank_type);
+        super(handler, x, y, GetTankByLevel(upgrade_level));
+        current_direction = Current_Direction.down;
+        init();
         EnemyBullet = false;
-//        animationDown = new Animation(const_speed, Assets.player_down);
-//        animationLeft = new Animation(const_speed, Assets.player_left);
-//        animationRight = new Animation(const_speed, Assets.player_right);
-//        animationUp = new Animation(const_speed, Assets.player_up);
     }
 
     @Override
     public void die() {
+        State.setState(handler.getGame().loseState);
         System.out.println("You Lose");
     }
 
@@ -97,7 +93,6 @@ public class Player extends Shooter{
         else{
             return;
         }
-
         attackTimer = 0;
     }
 
@@ -105,18 +100,19 @@ public class Player extends Shooter{
     public void addItem(Item item) {
         switch(item.getId()){
             case 0:
-                this.points += 50;
+                points += 50;
                 System.out.println("Item 1 taken");
                 break;
             case 1:
                 this.health += 30;
-                this.points += 20;
+                points += 20;
                 System.out.println("Item 2 taken");
 
                 break;
             case 2:
+                upgrade_level = 1;
                 this.tank_type = Tank_Type.player_level_2;
-                //this.points += 50;
+                points += 50;
                 init();
                 System.out.println("Item 3 taken");
 
@@ -133,11 +129,14 @@ public class Player extends Shooter{
 //        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //                bounds.width, bounds.height);
-        //g.drawOval((int)x,(int) y, 10, 10);
     }
 
     public static void AddPoints(int points){
         Player.points += points;
+    }
+
+    public static int GetScore(){
+        return Player.points;
     }
 
     public int getNumberOfCoins() {

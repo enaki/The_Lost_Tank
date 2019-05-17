@@ -7,6 +7,7 @@ public class Assets {
 
     public static BufferedImage player, soil, grass, tree, water, mountain, heart, enemy_counter, number_of_coins, townGrass, townGrassDestroyed;
     public static BufferedImage gold_chest, health_chest, upgrade_chest;
+    public static BufferedImage pikachu_happy, pikachu_sad;
 
     public static BufferedImage[] player_down, player_up, player_left, player_right;
     public static BufferedImage[] btn_start;
@@ -38,6 +39,9 @@ public class Assets {
         health_chest = ImageLoader.loadImage("/textures/chest/health_chest.png");
         upgrade_chest = ImageLoader.loadImage("/textures/chest/upgrade_chest.png");
 
+        pikachu_happy = ImageLoader.loadImage("/textures/state/pikachu_win.png");
+        pikachu_sad = ImageLoader.loadImage("/textures/state/pikachu_sad.png");
+
 //        SpriteSheet btn_sheet = new SpriteSheet(ImageLoader.loadImage("/textures/start_2.png"));
 //        btn_start = new BufferedImage[2];
 //        btn_start[0] = btn_sheet.crop(width * 0, height * 1, width * 4, height * 1);
@@ -52,21 +56,26 @@ public class Assets {
 
         tank_1 = new BufferedImage[4];
         for (int i = 0; i < tank_1.length; i++){
-            tank_1[i] = tanks_sheet.crop(width * i, height * 0, width, height);
+//            tank_1[i] = tanks_sheet.crop(width * i, height * 0, width, height);
+            tank_1[i] = tanks_sheet.crop(width * (4 + i), height * 0, width, height);;
+
         }
 
         tank_2 = new BufferedImage[4];
         for (int i = 0; i < tank_2.length; i++){
-            tank_2[i] = tanks_sheet.crop(width * (4 + i), height * 0, width, height);
+//            tank_2[i] = tanks_sheet.crop(width * (4 + i), height * 0, width, height);
+            tank_2[i] = tanks_sheet.crop(width * i, height * 1, width, height);
         }
 
         tank_3 = new BufferedImage[4];
         for (int i = 0; i < tank_3.length; i++){
-            tank_3[i] = tanks_sheet.crop(width * i, height * 1, width, height);
+//            tank_3[i] = tanks_sheet.crop(width * i, height * 1, width, height);
+            tank_3[i] = tanks_sheet.crop(width * i, height * 0, width, height);
         }
 
         tank_4 = new BufferedImage[4];
         for (int i = 0; i < tank_4.length; i++){
+//            tank_4[i] = tanks_sheet.crop(width * (4 + i), height * 1, width, height);
             tank_4[i] = tanks_sheet.crop(width * (4 + i), height * 1, width, height);
         }
 

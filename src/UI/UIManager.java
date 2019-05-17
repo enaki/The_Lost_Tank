@@ -23,14 +23,7 @@ public class UIManager {
     }
 
     public void render(Graphics g){
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, handler.getWidth(), handler.getHeight());
-
-        Font fnt0 = new Font("arial", Font.BOLD, 50);
-        g.setFont(fnt0);
         g.setColor(Color.white);
-        g.drawString("Tank Game", handler.getWidth()/2-120, 100);
-
         for (UIObject o : objects){
             o.render(g);
         }

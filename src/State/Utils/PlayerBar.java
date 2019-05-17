@@ -11,7 +11,6 @@ public class PlayerBar {
         this.player_health = player_health;
         this.enemy_counter = enemy_counter;
         this.number_of_coins = number_of_coins;
-
     }
 
     public void render(Graphics g) {
@@ -25,6 +24,5 @@ public class PlayerBar {
         g.drawString(Integer.toString(player_health), 40, 33);
         g.drawString(Integer.toString(enemy_counter), 120, 33);
         g.drawString(Integer.toString(number_of_coins), 200, 33);
-
     }
 }

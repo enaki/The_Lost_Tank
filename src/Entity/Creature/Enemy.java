@@ -45,9 +45,9 @@ public class Enemy extends Shooter{
 
         Random rand = new Random();
         int n = rand.nextInt(2);
-//        if (n == 0){
-//            checkAttacks();
-//        }
+        if (n == 0){
+            checkAttacks();
+        }
         moveTimer += System.currentTimeMillis() - lastMoveTimer;
         lastMoveTimer = System.currentTimeMillis();
         if (moveTimer < moveCoolDown){

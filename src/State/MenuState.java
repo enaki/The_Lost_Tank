@@ -9,29 +9,27 @@ import UI.UIManager;
 import java.awt.*;
 
 public class MenuState extends State {
-
-    public Rectangle playButton, helpButton, exitButton;
     private UIManager uiManager;
 
     public MenuState(Handler handler){
 
         super(handler);
-        playButton = new Rectangle(handler.getGame().getWidth()/2 - 50, 150, 100, 50);
-        helpButton = new Rectangle(handler.getGame().getWidth()/2 - 50, 250, 100, 50);
-        exitButton = new Rectangle(handler.getGame().getWidth()/2 - 50, 350, 100, 50);
 
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUIManager(uiManager);
         isUIManagerActive = true;
 
+        //Play Button
         uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 50, 150, 100, 50, () -> {
             isUIManagerActive = false;
             State.setState(handler.getGame().gameState);
         }, "Play"));
+        //Help Button
         uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 50, 250, 100, 50, () -> {
             isUIManagerActive = false;
-            State.setState(handler.getGame().gameState);
+            State.setState(handler.getGame().helpState);
         }, "Help"));
+        //Exit Button
         uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 50, 350, 100, 50, () -> {
             isUIManagerActive = false;
             System.exit(0);
@@ -39,24 +37,24 @@ public class MenuState extends State {
 
     }
 
-
+    public UIManager getUiManager() {
+        return uiManager;
+    }
 
     @Override
     public void tick() {
         if (isUIManagerActive){
             uiManager.tick();
         }
-
-        //handler.getMouseManager().setUIManager(null);
 //        State.setState(handler.getGame().gameState);
     }
 
     @Override
     public void render(Graphics g) {
+        drawBackground(g);
         if (isUIManagerActive) {
             uiManager.render(g);
         }
-
 //        Font fnt1 = new Font("arial", Font.BOLD, 30);
 //        g.setFont(fnt1);
 //        g.drawString("Play", playButton.x + 20, playButton.y + 30);

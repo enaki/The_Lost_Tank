@@ -1,6 +1,5 @@
 package Entity.Types;
 
-import Bullet.Bullet;
 import Game.Assets;
 import java.awt.image.BufferedImage;
 
@@ -10,11 +9,20 @@ public class Entity_Types {
         tank_1, tank_2, tank_3, tank_4, player_level_1, player_level_2, robot
     }
 
+    public static Tank_Type GetTankByLevel(int level){
+        switch(level){
+            case 0:
+                return Tank_Type.player_level_1;
+            default:
+                return Tank_Type.player_level_2;
+        }
+    }
+
     public static Bullet_Types.Bullet_Type GetBulletType(Tank_Type tank_type) {
         switch (tank_type){
             case tank_1:
-            case player_level_1:
                 return Bullet_Types.Bullet_Type.bullet_1;
+            case player_level_1:
             case tank_2:
                 return Bullet_Types.Bullet_Type.bullet_2;
             case tank_3:
@@ -42,7 +50,7 @@ public class Entity_Types {
             case player_level_2:
                 return 2f;
             case robot:
-                return 2.5f;
+                return 3.0f;
         }
         return 1f;
     }
@@ -54,15 +62,14 @@ public class Entity_Types {
             case tank_2:
                 return 50;
             case tank_3:
-                return 70;
+                return 80;
             case tank_4:
-                return 120;
-            case player_level_1:
-                return 100;
             case player_level_2:
                 return 150;
+            case player_level_1:
+                return 100;
             case robot:
-                return 300;
+                return 350;
         }
         return 400;
     }
@@ -70,27 +77,27 @@ public class Entity_Types {
     public static int MoveCoolDown(Tank_Type e){
         switch (e){
             case robot:
-                return 700;
+                return 600;
             default:
-                return 2000;
+                return 1800;
         }
     }
 
     public static long TankAttackTime(Tank_Type e){
         switch (e){
             case tank_1:
-                return 700;
-            case tank_2:
-                return 800;
-            case tank_3:
-                return 900;
-            case tank_4:
-                return 1000;
-            case player_level_1:
             case player_level_2:
-                return 400;
-            case robot:
                 return 600;
+            case tank_2:
+                return 700;
+            case tank_3:
+                return 800;
+            case tank_4:
+                return 900;
+            case player_level_1:
+                return 300;
+            case robot:
+                return 500;
         }
         return 500;
     }
