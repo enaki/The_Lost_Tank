@@ -1,5 +1,6 @@
 package State;
 
+import AudioPlayer.AudioPlayer;
 import Game.*;
 import State.Utils.PlayerBar;
 import State.Utils.Levels.*;
@@ -16,12 +17,14 @@ public class GameState extends State {
     private World world;
     private PlayerBar playerBar;
     public static Level current_level = level_1;
+    private AudioPlayer audioPlayer;
 
     public GameState(Handler handler){
         super(handler);
         world = new World(handler, current_level);
         handler.setWorld(world);
-        this.playerBar = new PlayerBar();
+        this.playerBar = new PlayerBar(handler);
+        this.audioPlayer = new AudioPlayer(GetLevelBackgroundMusicPath(current_level));
     }
 
     @Override
@@ -31,6 +34,8 @@ public class GameState extends State {
 
     public void startNewGame(){
         current_level = level_1;
+        audioPlayer.setClip(GetLevelBackgroundMusicPath(current_level));
+        audioPlayer.play();
         handler.getWorld().getEntityManager().getPlayer().setNumberOfCoins(0);
         handler.getWorld().getEntityManager().getPlayer().setUpgrade_level(0);
 
@@ -40,6 +45,8 @@ public class GameState extends State {
 
     public void startNextLevel(){
         current_level = nextLevel(current_level);
+        audioPlayer.setClip(GetLevelBackgroundMusicPath(current_level));
+        audioPlayer.play();
         String path = GetLevelWorld(current_level);
         world.setWorld(path);
     }
@@ -47,8 +54,8 @@ public class GameState extends State {
     @Override
     public void tick() {
         if (handler.getWorld().getEntityManager().getCounter() == 0){
-
-            if (current_level == level_4){
+            audioPlayer.close();
+            if (current_level == level_5){
                 State.setState(handler.getGame().winState);
             }
             else{
@@ -59,9 +66,11 @@ public class GameState extends State {
         if (handler.getKeyManager().esc){
             handler.getGame().intermediateMenuState.setUIManagerActive(true);
             State.setState(handler.getGame().intermediateMenuState);
+            audioPlayer.stop();
         }
         world.tick();
-        playerBar.tick(handler.getWorld().getEntityManager().getPlayer().getHealth(), handler.getWorld().getEntityManager().getCounter(),handler.getWorld().getEntityManager().getPlayer().getNumberOfCoins() );
+       // playerBar.tick(handler.getWorld().getEntityManager().getPlayer().getHealth(), handler.getWorld().getEntityManager().getCounter(),handler.getWorld().getEntityManager().getPlayer().getNumberOfCoins() );
+        playerBar.tick();
     }
 
     @Override
@@ -74,4 +83,7 @@ public class GameState extends State {
         g.drawString(Integer.toString(handler.getGame().GetFps()), handler.getWidth()-30, 30);
     }
 
+    public AudioPlayer getAudioPlayer() {
+        return audioPlayer;
+    }
 }

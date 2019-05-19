@@ -17,7 +17,7 @@ public class MenuState extends State {
         handler.getMouseManager().setUIManager(uiManager);
         isUIManagerActive = true;
 
-        //Play Button
+        //New game Button
         uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 90, 230, 180, 50, () -> {
             isUIManagerActive = false;
             hasGameStarted = true;

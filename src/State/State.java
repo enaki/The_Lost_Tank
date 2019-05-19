@@ -49,7 +49,7 @@ public abstract class State {
         Font fnt0 = new Font("arial", Font.BOLD, 40);
         g.setFont(fnt0);
         g.setColor(Color.GREEN);
-        String title = "Mini-Tank";
+        String title = "The Lost Tank";
         int width = g.getFontMetrics().stringWidth(title);
         g.drawString(title, handler.getWidth()/2-width/2, 80);
     }

@@ -1,5 +1,7 @@
 package Entity.Creature;
 
+import AudioPlayer.AudioPlayer;
+import Entity.AnimationObjects.AnimationObject;
 import Entity.Current_Direction;
 import Entity.Types.Entity_Types;
 import Game.Animation;
@@ -32,9 +34,9 @@ public class EnemyWithAnimations extends Enemy {
     public void render(Graphics g) {
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width*3/2, height*3/2, null);
         g.setColor(Color.YELLOW);
-        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
-                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
-                bounds.width, bounds.height);
+//        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+//                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
+//                bounds.width, bounds.height);
     }
 
     @Override
@@ -83,6 +85,9 @@ public class EnemyWithAnimations extends Enemy {
 
     @Override
     public void die(){
+        AudioPlayer audio = new AudioPlayer("/sound/tank/explosion.wav");
+        audio.play();
+        handler.getWorld().getAnimationManager().addAnimationObject(new AnimationObject(handler, x ,y, 96, 96, this.getBoundsWidth(), this.getBoundsHeight()));
         handler.getWorld().getItemManager().addItem(Item.upgraded_chest.createNew((int)x, (int)y));
     }
 }

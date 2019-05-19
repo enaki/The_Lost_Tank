@@ -1,5 +1,7 @@
 package Entity.Creature;
 
+import AudioPlayer.AudioPlayer;
+import Entity.AnimationObjects.AnimationObject;
 import Entity.Current_Direction;
 import Entity.Types.Bullet_Types;
 import Entity.Types.Entity_Types;
@@ -29,6 +31,13 @@ public abstract class Shooter extends Creature{
         this.tank_type = tank_type;
         init();
 
+    }
+
+    @Override
+    public void die(){
+        handler.getWorld().getAnimationManager().addAnimationObject(new AnimationObject(handler, x ,y, 64, 64, this.getBoundsWidth(), this.getBoundsHeight()));
+        AudioPlayer audio = new AudioPlayer("/sound/tank/explosion.wav");
+        audio.play();
     }
 
     protected void init(){

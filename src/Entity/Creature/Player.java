@@ -1,4 +1,5 @@
 package Entity.Creature;
+import AudioPlayer.AudioPlayer;
 import Entity.Current_Direction;
 import Entity.Types.Bullet_Types;
 import Entity.Types.Entity_Types;
@@ -25,17 +26,13 @@ public class Player extends Shooter{
 
     @Override
     public void die() {
+        handler.getGame().gameState.getAudioPlayer().close();
         State.setState(handler.getGame().loseState);
         System.out.println("You Lose");
     }
 
     @Override
     public void tick() {
-//       animationDown.tick();
-//       animationLeft.tick();
-//       animationRight.tick();
-//       animationUp.tick();
-
         getInput();
         move();
         handler.getGameCamera().centerOnEntity(this);
@@ -83,10 +80,15 @@ public class Player extends Shooter{
 
         if (handler.getKeyManager().space) {
             if (tank_type == Entity_Types.Tank_Type.player_level_2) {
+                AudioPlayer audioPlayer = new AudioPlayer("/sound/bullet/rocket.wav");
+                audioPlayer.play();
+
                 handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, Bullet_Types.Bullet_Type.bullet_3, middle));
                 handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, one_seventeenth));
                 handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, six_seventeenth));
             } else {
+                AudioPlayer audioPlayer = new AudioPlayer("/sound/bullet/bullet_1.wav");
+                audioPlayer.play();
                 handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, middle));
             }
         }

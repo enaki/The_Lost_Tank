@@ -10,6 +10,7 @@ public class IntermediateMenuState extends MenuState {
         uiManager.addObject(new UIButton(handler.getGame().getWidth()/2 - 90, 150, 180, 50, () -> {
             isUIManagerActive = false;
             State.setState(handler.getGame().gameState);
+            handler.getGame().gameState.getAudioPlayer().play_where_left();
         }, "Continue"));
     }
 }

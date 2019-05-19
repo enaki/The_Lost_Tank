@@ -39,7 +39,7 @@ public class IntermediateState extends State {
         Font fnt1 = new Font("Comic Sans MS", Font.BOLD, 25);
         g.setColor(Color.cyan);
         g.setFont(fnt1);
-        String text = GetLevelName(previousLevel(GameState.current_level)) + " passed";
+        String text = GetLevelName(GameState.current_level) + " passed";
         int width = g.getFontMetrics().stringWidth(text);
         g.drawString(text, handler.getWidth() / 2 - width/2, handler.getHeight() / 2 - 50);
     }

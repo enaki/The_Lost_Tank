@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
     private static final int width = 64, height = 64;
 
-    public static BufferedImage player, soil, grass, tree, water, mountain, heart, enemy_counter, number_of_coins, townGrass, townGrassDestroyed;
+    public static BufferedImage player, soil, grass, grass_2, grass_3, tree, water, mountain, heart, enemy_counter, number_of_coins, townGrass, townGrassDestroyed;
     public static BufferedImage gold_chest, health_chest, upgrade_chest;
     public static BufferedImage pikachu_happy, pikachu_sad;
 
@@ -28,6 +28,9 @@ public class Assets {
         tree = ImageLoader.loadImage("/textures/tiles/tree.png");
         water = ImageLoader.loadImage("/textures/tiles/water.png");
         grass = ImageLoader.loadImage("/textures/tiles/grass.png");
+        grass_2 = ImageLoader.loadImage("/textures/tiles/grass_2.png");
+        grass_3 = ImageLoader.loadImage("/textures/tiles/grass_3.png");
+
         townGrass = ImageLoader.loadImage("/textures/tiles/townGrass.png");
         townGrassDestroyed = ImageLoader.loadImage("/textures/tiles/townGrassDestroyed.png");
         mountain = ImageLoader.loadImage("/textures/tiles/mountain.png");

@@ -1,18 +1,16 @@
 package Entity.Creature;
 
+import AudioPlayer.AudioPlayer;
 import Entity.Current_Direction;
 import Game.*;
 import Bullet.Bullet;
 import Item.Item;
-import Tile.Tile;
 import Entity.Types.Entity_Types;
 
 import java.awt.*;
 import java.util.Random;
 
-import static Entity.Dimensions.Tank_Type_Bounds_Dimensions.*;
 import static Entity.Types.Bullet_Appereance_Offset.Bullet_Appereance_Types.*;
-import static Entity.Types.Entity_Types.TankSpeed;
 
 public class Enemy extends Shooter{
     protected long lastMoveTimer, moveCoolDown = 2000, moveTimer = moveCoolDown;
@@ -25,6 +23,7 @@ public class Enemy extends Shooter{
 
     @Override
     public void die(){
+        super.die();
         Random rand = new Random();
         int n = rand.nextInt(100);
         if (n < 25){
@@ -91,6 +90,8 @@ public class Enemy extends Shooter{
         if (attackTimer < attackCooldown) {
             return;
         }
+//        AudioPlayer audioPlayer = new AudioPlayer("/sound/bullet/bullet_1.wav");
+//        audioPlayer.play();
         if (tank_type == Entity_Types.Tank_Type.tank_4){
             handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, quarter));
             handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, threequarter));

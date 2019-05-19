@@ -1,7 +1,9 @@
 package Bullet;
 
+import AudioPlayer.AudioPlayer;
 import Entity.AnimationObjects.AnimationObject;
 import Entity.Creature.Enemy;
+import Entity.Creature.Player;
 import Entity.Creature.Shooter;
 import Entity.Current_Direction;
 import Entity.Entity;
@@ -27,9 +29,12 @@ public class Bullet  extends Entity {
     protected Bullet_Types.Bullet_Type bullet_type;
     protected Shooter hostShooter;
     private Current_Direction current_direction;
+    private AudioPlayer audioPlayer;
 
     public Bullet(Handler handler, Shooter shooter,  Bullet_Type bullet_type, Bullet_Appereance_Types appereance_type){
         super(handler, shooter.getX() + shooter.getBoundsX() , shooter.getY() + shooter.getBoundsY(), 10, 10);
+
+
         this.bullet_type = bullet_type;
         this.firepower = Bullet_Types.FirePower(bullet_type);
         BufferedImage [] images = Bullet_Types.BulletImages(bullet_type);
@@ -104,7 +109,7 @@ public class Bullet  extends Entity {
 
     //@Override
     public void die() {
-        handler.getWorld().getAnimationManager().addAnimationObject(new AnimationObject(handler, x ,y));
+        handler.getWorld().getAnimationManager().addAnimationObject(new AnimationObject(handler, x ,y, 32, 32, this.getBoundsWidth(), this.getBoundsHeight()));
     }
 
     public void tick(){

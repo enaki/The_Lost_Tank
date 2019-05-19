@@ -4,13 +4,33 @@ import Game.Assets;
 
 import java.awt.*;
 
-public class PlayerBar {
+import Game.Handler;
+import State.State;
+import UI.UIManager;
+
+public class PlayerBar extends State {
     protected int player_health, enemy_counter, number_of_coins;
 
-    public void tick(int player_health, int enemy_counter, int number_of_coins) {
-        this.player_health = player_health;
-        this.enemy_counter = enemy_counter;
-        this.number_of_coins = number_of_coins;
+    public PlayerBar(Handler handler){
+        super(handler);
+    }
+
+//    public void tick(int player_health, int enemy_counter, int number_of_coins) {
+//        this.player_health = handler.getWorld().getEntityManager().getPlayer().getHealth();
+//        this.enemy_counter = handler.getWorld().getEntityManager().getCounter();
+//        this.number_of_coins = handler.getWorld().getEntityManager().getPlayer().getNumberOfCoins();
+//    }
+
+    @Override
+    protected UIManager getUiManager() {
+        return null;
+    }
+
+    @Override
+    public void tick() {
+        this.player_health = handler.getWorld().getEntityManager().getPlayer().getHealth();
+        this.enemy_counter = handler.getWorld().getEntityManager().getCounter();
+        this.number_of_coins = handler.getWorld().getEntityManager().getPlayer().getNumberOfCoins();
     }
 
     public void render(Graphics g) {

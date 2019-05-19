@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 public class Tile {
     public static Tile[] tiles = new Tile[256];
     public static Tile grassTile = new GrassTile(0);
+    public static Tile grassTile_2 = new GrassTile(6);
+    public static Tile grassTile_3 = new GrassTile(7);
     public static Tile dirtTile = new SoilTile(1);
     public static Tile waterTile = new WaterTile(2);
     public static Tile treeTile = new TreeTile(3);

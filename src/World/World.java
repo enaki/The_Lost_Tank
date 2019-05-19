@@ -6,6 +6,7 @@ import Entity.Creature.Player;
 import Entity.EntityFactory;
 import Entity.EntityManager;
 import Game.*;
+import Item.Item;
 import Item.ItemManager;
 import State.Utils.Levels;
 import Tile.Tile;
@@ -165,6 +166,10 @@ public class World {
                     case -5 :
                         entityManager.addEntity(entityFactory.ProduceEntity(temp, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
                         temp = Tile.grassTile.getId();
+                        break;
+                    case 20:
+                        temp = Tile.grassTile_2.getId();
+                        itemManager.addItem(Item.upgraded_chest.createNew(x, y));
                         break;
                     case 11 :
                         temp = Tile.dirtTile.getId();
