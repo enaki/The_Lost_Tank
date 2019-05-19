@@ -17,11 +17,11 @@ public class Tree extends Static_Entity {
     public void die() {
         Random rand = new Random();
         int n = rand.nextInt(100);
-        if (n < 20) {
+        if (n < 15) {
             handler.getWorld().getItemManager().addItem(Item.gold_chest.createNew((int) x, (int) y));
-        } else if (n < 40) {
+        } else if (n < 30) {
             handler.getWorld().getItemManager().addItem(Item.health_chest.createNew((int) x, (int) y));
-        } else if (n < 50) {
+        } else if (n < 40) {
             handler.getWorld().getItemManager().addItem(Item.upgraded_chest.createNew((int) x, (int) y));
         }
     }

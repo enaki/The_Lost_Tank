@@ -26,12 +26,7 @@ public class Enemy extends Shooter{
         super.die();
         Random rand = new Random();
         int n = rand.nextInt(100);
-        if (n < 25){
-            handler.getWorld().getItemManager().addItem(Item.gold_chest.createNew((int)x, (int)y));
-        }
-        else if (n < 50){
-            handler.getWorld().getItemManager().addItem(Item.health_chest.createNew((int)x, (int)y));
-        }
+        GenerateItemByTankType(this.tank_type, n);
     }
 
     @Override
@@ -99,7 +94,6 @@ public class Enemy extends Shooter{
         else {
             handler.getWorld().getBulletManager().addBullet(new Bullet(handler, this, bullet_type, middle));
         }
-
         attackTimer = 0;
     }
 
@@ -112,7 +106,11 @@ public class Enemy extends Shooter{
                 break;
             case 2:
                 this.tank_type = Entity_Types.Tank_Type.tank_4;
+                int temp_health = this.health;
                 init();
+                if (this.health < temp_health){
+                    this.health = temp_health + 50;
+                }
                 break;
             default:
                 break;
@@ -126,6 +124,35 @@ public class Enemy extends Shooter{
 //        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //                (int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //                bounds.width, bounds.height);
+    }
+
+    private void GenerateItemByTankType(Entity_Types.Tank_Type tank_type, int n){
+        switch(tank_type){
+            case tank_1:
+                GenerateItem(n, 50, 45, 5);
+                break;
+            case tank_2:
+                GenerateItem(n, 40, 45, 15);
+                break;
+            case tank_3:
+                GenerateItem(n, 30, 45, 25);
+                break;
+            default:
+                GenerateItem(n, 20, 45, 35);
+                break;
+        }
+    }
+
+    private void GenerateItem(int n, int probability_coin, int probability_health, int probability_upgrade){
+        if (n <probability_coin){
+            handler.getWorld().getItemManager().addItem(Item.gold_chest.createNew((int)x, (int)y));
+        }
+        else if (n < probability_health + probability_coin){
+            handler.getWorld().getItemManager().addItem(Item.health_chest.createNew((int)x, (int)y));
+        }
+        else if (n < probability_health + probability_coin + probability_upgrade){
+            handler.getWorld().getItemManager().addItem(Item.upgraded_chest.createNew((int)x, (int)y));
+        }
     }
 
 }
