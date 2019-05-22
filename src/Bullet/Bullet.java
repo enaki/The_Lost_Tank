@@ -33,8 +33,6 @@ public class Bullet  extends Entity {
 
     public Bullet(Handler handler, Shooter shooter,  Bullet_Type bullet_type, Bullet_Appereance_Types appereance_type){
         super(handler, shooter.getX() + shooter.getBoundsX() , shooter.getY() + shooter.getBoundsY(), 10, 10);
-
-
         this.bullet_type = bullet_type;
         this.firepower = Bullet_Types.FirePower(bullet_type);
         BufferedImage [] images = Bullet_Types.BulletImages(bullet_type);
@@ -134,12 +132,8 @@ public class Bullet  extends Entity {
     }
 
     public void move(){
-        if (!checkEntityCollisions(xMove, 0f)){
-            moveX();
-        }
-        if (!checkEntityCollisions(0f, yMove)){
-            moveY();
-        }
+        moveX();
+        moveY();
     }
 
     public void moveX(){

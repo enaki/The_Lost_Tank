@@ -119,6 +119,7 @@ public class Enemy extends Shooter{
 
     @Override
     public void render(Graphics g) {
+        drawHealth(g);
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 //        g.setColor(Color.YELLOW);
 //        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
@@ -141,6 +142,15 @@ public class Enemy extends Shooter{
                 GenerateItem(n, 20, 45, 35);
                 break;
         }
+    }
+
+    protected void drawHealth(Graphics g){
+        Font fnt1 = new Font("arial", Font.BOLD, 15);
+        String text = Integer.toString(health);
+        int text_width = g.getFontMetrics().stringWidth(text);
+        g.setColor(Color.red);
+        g.setFont(fnt1);
+        g.drawString(text, (int) (x - handler.getGameCamera().getxOffset() + bounds.x + bounds.width/2 - text_width/2), (int) (y - handler.getGameCamera().getyOffset()));
     }
 
     private void GenerateItem(int n, int probability_coin, int probability_health, int probability_upgrade){

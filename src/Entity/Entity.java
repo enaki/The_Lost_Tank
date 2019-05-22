@@ -1,5 +1,6 @@
 package Entity;
 
+import Bullet.Bullet;
 import Entity.Creature.Player;
 import Game.*;
 
@@ -35,7 +36,7 @@ public abstract class Entity {
     public abstract void die();
 
     public void hurt(int amount){
-        if (health > 0) {
+        if (health > 0 ) {
             health -= amount;
             if (health <= 0) {
                 active = false;

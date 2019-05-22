@@ -1,5 +1,6 @@
 package State;
 
+import AudioPlayer.AudioPlayer;
 import Game.Assets;
 import Game.Handler;
 import UI.UIButton;
@@ -9,7 +10,6 @@ import java.awt.*;
 
 public class LoseState extends State{
     private UIManager uiManager;
-
     public LoseState(Handler handler) {
 
         super(handler);
@@ -21,7 +21,9 @@ public class LoseState extends State{
             isUIManagerActive = false;
             handler.getGame().menuState.setUIManagerActive(true);
             State.setState(handler.getGame().menuState);
+            audioPlayer.stop();
         }, "Return To Menu"));
+        audioPlayer = new AudioPlayer("/sound/lose_state.wav");
     }
 
     @Override
@@ -32,6 +34,7 @@ public class LoseState extends State{
         if (handler.getKeyManager().esc){
             handler.getGame().menuState.setUIManagerActive(true);
             State.setState(handler.getGame().menuState);
+            audioPlayer.stop();
         }
     }
 
@@ -59,4 +62,5 @@ public class LoseState extends State{
     public UIManager getUiManager() {
         return uiManager;
     }
+
 }

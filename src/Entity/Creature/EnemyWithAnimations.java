@@ -32,6 +32,7 @@ public class EnemyWithAnimations extends Enemy {
 
     @Override
     public void render(Graphics g) {
+        drawHealth(g);
         g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width*3/2, height*3/2, null);
         g.setColor(Color.YELLOW);
 //        g.drawRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),

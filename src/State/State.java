@@ -1,5 +1,6 @@
 package State;
 
+import AudioPlayer.AudioPlayer;
 import Game.*;
 import UI.UIManager;
 
@@ -7,7 +8,7 @@ import java.awt.*;
 
 public abstract class State {
     private static State currentState = null;
-
+    protected AudioPlayer audioPlayer;
     protected Handler handler;
     boolean isUIManagerActive = false;
     public static boolean hasGameStarted = false;
@@ -54,4 +55,7 @@ public abstract class State {
         g.drawString(title, handler.getWidth()/2-width/2, 80);
     }
 
+    public AudioPlayer getAudioPlayer() {
+        return audioPlayer;
+    }
 }

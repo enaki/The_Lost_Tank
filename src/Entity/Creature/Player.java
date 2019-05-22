@@ -26,9 +26,10 @@ public class Player extends Shooter{
 
     @Override
     public void die() {
+        super.die();
         handler.getGame().gameState.getAudioPlayer().close();
         State.setState(handler.getGame().loseState);
-        System.out.println("You Lose");
+        handler.getGame().loseState.getAudioPlayer().play();
     }
 
     @Override

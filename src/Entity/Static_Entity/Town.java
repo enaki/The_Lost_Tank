@@ -1,5 +1,6 @@
 package Entity.Static_Entity;
 
+import Bullet.Bullet;
 import Game.Assets;
 import Game.Handler;
 import Tile.Tile;
@@ -25,7 +26,7 @@ public class Town extends Static_Entity {
         if (health > 0) {
             health -= amount;
             if (health <= 0) {
-                handler.getWorld().getEntityManager().getPlayer().AddPoints(-10);
+                handler.getWorld().getEntityManager().getPlayer().AddPoints(-30);
                 this.image = Assets.townGrassDestroyed;
                 die();
             }

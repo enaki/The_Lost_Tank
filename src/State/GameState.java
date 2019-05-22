@@ -17,7 +17,6 @@ public class GameState extends State {
     private World world;
     private PlayerBar playerBar;
     public static Level current_level = level_1;
-    private AudioPlayer audioPlayer;
 
     public GameState(Handler handler){
         super(handler);
@@ -35,7 +34,7 @@ public class GameState extends State {
     public void startNewGame(){
         current_level = level_1;
         audioPlayer.setClip(GetLevelBackgroundMusicPath(current_level));
-        audioPlayer.play();
+        audioPlayer.loop_play();
         handler.getWorld().getEntityManager().getPlayer().setNumberOfCoins(0);
         handler.getWorld().getEntityManager().getPlayer().setUpgrade_level(0);
 
@@ -46,7 +45,7 @@ public class GameState extends State {
     public void startNextLevel(){
         current_level = nextLevel(current_level);
         audioPlayer.setClip(GetLevelBackgroundMusicPath(current_level));
-        audioPlayer.play();
+        audioPlayer.loop_play();
         String path = GetLevelWorld(current_level);
         world.setWorld(path);
     }
@@ -57,6 +56,7 @@ public class GameState extends State {
             audioPlayer.close();
             if (current_level == level_5){
                 State.setState(handler.getGame().winState);
+
             }
             else{
                 State.setState(handler.getGame().intermediateState);
@@ -83,7 +83,4 @@ public class GameState extends State {
         g.drawString(Integer.toString(handler.getGame().GetFps()), handler.getWidth()-30, 30);
     }
 
-    public AudioPlayer getAudioPlayer() {
-        return audioPlayer;
-    }
 }

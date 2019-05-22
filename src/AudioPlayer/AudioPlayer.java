@@ -34,10 +34,23 @@ public class AudioPlayer {
 
     }
 
+    public void loop_play(){
+        if (clip == null) return;
+        stop();
+        clip.setFramePosition(0);
+        clip.loop(10);
+    }
+
     public void play_where_left() {
         if (clip == null) return;
         stop();
         clip.start();
+    }
+
+    public void loop_where_left() {
+        if (clip == null) return;
+        stop();
+        clip.loop(10);
     }
 
     public void stop() {

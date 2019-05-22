@@ -167,9 +167,17 @@ public class World {
                         entityManager.addEntity(entityFactory.ProduceEntity(temp, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
                         temp = Tile.grassTile.getId();
                         break;
-                    case 20:
+                    case 20:    //gold chest
                         temp = Tile.grassTile_2.getId();
-                        itemManager.addItem(Item.upgraded_chest.createNew(x, y));
+                        itemManager.addItem(Item.gold_chest.createNew(x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
+                        break;
+                    case 21:    //health chest
+                        temp = Tile.grassTile_2.getId();
+                        itemManager.addItem(Item.health_chest.createNew(x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
+                        break;
+                    case 22:    //upgraded chest
+                        temp = Tile.grassTile_2.getId();
+                        itemManager.addItem(Item.upgraded_chest.createNew(x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT));
                         break;
                     case 11 :
                         temp = Tile.dirtTile.getId();
