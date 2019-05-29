@@ -37,7 +37,6 @@ public class GameState extends State {
         audioPlayer.loop_play();
         handler.getWorld().getEntityManager().getPlayer().setNumberOfCoins(0);
         handler.getWorld().getEntityManager().getPlayer().setUpgrade_level(0);
-
         String path = GetLevelWorld(current_level);
         world.setWorld(path);
     }
