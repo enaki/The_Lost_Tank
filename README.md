@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-![Game](https://github.com/enaki/The_Lost_Tank/master/blob/Documenation/screenshots/ss_1.png)
+![Game](https://github.com/enaki/The_Lost_Tank/blob/master/Documenation/screenshots/ss_1.png)
 
 
 #### 1.1. Plot
@@ -76,7 +76,7 @@ There are 3 tables:
 * BestScre
 * LevelPath
 
-![Database Tables](https://github.com/enaki/The_Lost_Tank/master/blob/Documenation/screenshots/db.png)
+![Database Tables](https://github.com/enaki/The_Lost_Tank/blob/master/Documenation/screenshots/db.png)
 
 #### 3.1 Score Table
 Here are kept the history of the games won. 
@@ -100,7 +100,7 @@ each level in wav format
 
 ## User Interface
 
-![States](https://github.com/enaki/The_Lost_Tank/master/blob/Documenation/screenshots/ui.png)
+![States](https://github.com/enaki/The_Lost_Tank/blob/master/Documenation/screenshots/ui.png)
 
 There are 6 states:
 * Menu State
@@ -110,12 +110,12 @@ There are 6 states:
 * Lose State
 * Win State
 
-![States](https://github.com/enaki/The_Lost_Tank/master/blob/Documenation/screenshots/ss_2.png)
+![States](https://github.com/enaki/The_Lost_Tank/blob/master/Documenation/screenshots/ss_2.png)
 
 
 ## Class Diagram
 
-![Class Diagram](https://github.com/enaki/The_Lost_Tank/master/blob/Documenation/diagrams/class_diagram.png)
+![Class Diagram](https://github.com/enaki/The_Lost_Tank/blob/master/Documenation/diagrams/class_diagram.png)
 
 
 ## Run the Project
