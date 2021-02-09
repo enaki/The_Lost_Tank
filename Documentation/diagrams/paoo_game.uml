@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1653.0" y="2131.0">Item.Item</node>
+    <node x="1915.0" y="2131.0">World.World</node>
+    <node x="2272.5" y="2362.0">Entity.Types.Entity_Types.Tank_Type</node>
+    <node x="2540.0" y="442.0">State.IntermediateState</node>
+    <node x="25.5" y="1471.5">Entity.Creature.Enemy</node>
+    <node x="328.0" y="2131.0">Tile.Tile</node>
+    <node x="0.0" y="1837.0">Entity.Creature.EnemyWithAnimations</node>
+    <node x="2936.0" y="409.0">State.Utils.PlayerBar</node>
+    <node x="1967.0" y="3063.0">UI.ClickListener</node>
+    <node x="2607.0" y="2362.0">State.Utils.Levels.Level</node>
+    <node x="2190.0" y="376.0">State.HelpState</node>
+    <node x="0.0" y="3063.0">Entity.Dimensions.Tank_Type_Bounds_Dimensions</node>
+    <node x="1506.0" y="3063.0">Game.ImageLoader</node>
+    <node x="3191.0" y="2725.0">Item.ItemManager</node>
+    <node x="2755.0" y="442.0">State.LoseState</node>
+    <node x="2196.0" y="2131.0">Entity.Types.Entity_Types</node>
+    <node x="777.0" y="3063.0">Game.SpriteSheet</node>
+    <node x="0.0" y="2596.5">Tile.WaterTile</node>
+    <node x="1545.0" y="675.0">State.IntermediateMenuState</node>
+    <node x="3173.0" y="0.0">Game.Game</node>
+    <node x="687.0" y="2585.5">Tile.TreeTile</node>
+    <node x="558.0" y="2725.0">Entity.Types.Bullet_Appereance_Offset</node>
+    <node x="557.0" y="2596.5">Tile.SoilTile</node>
+    <node x="0.0" y="2725.0">KeyManager.KeyManager</node>
+    <node x="160.77500000000003" y="1039.0">Entity.Creature.Shooter</node>
+    <node x="2653.0" y="2725.0">Game.Display</node>
+    <node x="2427.0" y="2725.0">Bullet.BulletManager</node>
+    <node x="592.5" y="2846.0">Entity.Types.Bullet_Appereance_Offset.Bullet_Appereance_Types</node>
+    <node x="335.5" y="1471.0">Entity.Creature.Player</node>
+    <node x="1363.0" y="2725.0">UI.UIManager</node>
+    <node x="2198.5" y="0.0">State.State</node>
+    <node x="846.7750000000001" y="730.0">Entity.Static_Entity.Static_Entity</node>
+    <node x="1978.0" y="387.0">State.GameState</node>
+    <node x="239.0" y="2725.0">Entity.Types.Bullet_Types</node>
+    <node x="3210.0" y="2131.0">MouseManager.MouseManager</node>
+    <node x="313.5" y="2868.0">Entity.Types.Bullet_Types.Bullet_Type</node>
+    <node x="178.77500000000003" y="607.5">Entity.Creature.Creature</node>
+    <node x="781.0" y="1149.5">Entity.Static_Entity.Town</node>
+    <node x="1054.0" y="3063.0">State.MyResult</node>
+    <node x="2149.0" y="2725.0">State.GameCamera</node>
+    <node x="1642.0" y="2725.0">Game.Animation</node>
+    <node x="318.0" y="2585.0">Tile.GrassTile</node>
+    <node x="888.0" y="2475.0">UI.UIButton</node>
+    <node x="498.0" y="3063.0">Entity.EntityFactory</node>
+    <node x="2837.0" y="2131.0">Entity.AnimationObjects.AnimationObject</node>
+    <node x="1255.0" y="3063.0">Utils.Utils</node>
+    <node x="990.0" y="1172.0">Entity.Static_Entity.Tree</node>
+    <node x="883.0" y="2725.0">Entity.EntityManager</node>
+    <node x="1906.0" y="2725.0">Game.Handler</node>
+    <node x="1153.0" y="2725.0">AudioPlayer.AudioPlayer</node>
+    <node x="1577.0" y="442.0">State.MenuState</node>
+    <node x="2504.0" y="2131.0">State.Utils.Levels</node>
+    <node x="1219.0" y="0.0">Game.Assets</node>
+    <node x="1108.5" y="2131.0">UI.UIObject</node>
+    <node x="501.7500000000001" y="0.0">Entity.Entity</node>
+    <node x="442.77500000000003" y="520.0">Bullet.Bullet</node>
+    <node x="285.0" y="3063.0">Entity.Current_Direction</node>
+    <node x="1213.0" y="2475.0">UI.UIImageButton</node>
+    <node x="1776.0" y="3063.0">Main</node>
+    <node x="1758.0" y="386.5">State.WinState</node>
+    <node x="2864.0" y="2725.0">Entity.AnimationObjects.AnimationManager</node>
+    <node x="142.0" y="2585.5">Tile.MountainTile</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="State.HelpState" target="State.State">
+      <point x="0.0" y="-124.5" />
+      <point x="0.0" y="158.0" />
+    </edge>
+    <edge source="Entity.Types.Entity_Types.Tank_Type" target="Entity.Types.Entity_Types">
+      <point x="0.0" y="-90.5" />
+      <point x="0.0" y="90.5" />
+    </edge>
+    <edge source="State.LoseState" target="State.State">
+      <point x="0.0" y="-58.5" />
+      <point x="2835.5" y="346.0" />
+      <point x="2444.428571428571" y="346.0" />
+      <point x="89.4285714285711" y="158.0" />
+    </edge>
+    <edge source="Entity.Types.Bullet_Types.Bullet_Type" target="Entity.Types.Bullet_Types">
+      <point x="0.0" y="-68.5" />
+      <point x="0.0" y="46.5" />
+    </edge>
+    <edge source="State.Utils.PlayerBar" target="State.State">
+      <point x="0.0" y="-91.5" />
+      <point x="3032.0" y="336.0" />
+      <point x="2489.142857142857" y="336.0" />
+      <point x="134.14285714285688" y="158.0" />
+    </edge>
+    <edge source="Entity.Creature.EnemyWithAnimations" target="Entity.Creature.Enemy">
+      <point x="0.0" y="-124.5" />
+      <point x="0.0" y="157.5" />
+    </edge>
+    <edge source="Entity.Creature.Player" target="Entity.Creature.Shooter">
+      <point x="0.0" y="-158.0" />
+      <point x="432.0" y="1446.0" />
+      <point x="370.77500000000003" y="1446.0" />
+      <point x="70.0" y="191.0" />
+    </edge>
+    <edge source="UI.UIImageButton" target="UI.UIObject">
+      <point x="0.0" y="-80.5" />
+      <point x="1410.5" y="2450.0" />
+      <point x="1284.0" y="2450.0" />
+      <point x="58.5" y="147.0" />
+    </edge>
+    <edge source="Entity.Static_Entity.Static_Entity" target="Entity.Entity">
+      <point x="0.0" y="-24.5" />
+      <point x="978.2750000000001" y="495.0" />
+      <point x="724.2500000000001" y="495.0" />
+      <point x="89.0" y="235.0" />
+    </edge>
+    <edge source="State.GameState" target="State.State">
+      <point x="0.0" y="-113.5" />
+      <point x="2074.0" y="356.0" />
+      <point x="2310.285714285714" y="356.0" />
+      <point x="-44.71428571428578" y="158.0" />
+    </edge>
+    <edge source="State.WinState" target="State.State">
+      <point x="0.0" y="-114.0" />
+      <point x="1858.0" y="346.0" />
+      <point x="2265.5714285714284" y="346.0" />
+      <point x="-89.42857142857156" y="158.0" />
+    </edge>
+    <edge source="Tile.TreeTile" target="Tile.Tile">
+      <point x="0.0" y="-47.0" />
+      <point x="765.0" y="2555.0" />
+      <point x="507.1" y="2555.0" />
+      <point x="79.60000000000002" y="202.0" />
+    </edge>
+    <edge source="State.IntermediateState" target="State.State">
+      <point x="0.0" y="-58.5" />
+      <point x="2637.5" y="356.0" />
+      <point x="2399.714285714286" y="356.0" />
+      <point x="44.71428571428578" y="158.0" />
+    </edge>
+    <edge source="Tile.GrassTile" target="Tile.Tile">
+      <point x="0.0" y="-47.5" />
+      <point x="0.0" y="202.0" />
+    </edge>
+    <edge source="UI.UIButton" target="UI.UIObject">
+      <point x="0.0" y="-80.5" />
+      <point x="1040.5" y="2450.0" />
+      <point x="1167.0" y="2450.0" />
+      <point x="-58.5" y="147.0" />
+    </edge>
+    <edge source="Entity.Types.Bullet_Appereance_Offset.Bullet_Appereance_Types" target="Entity.Types.Bullet_Appereance_Offset">
+      <point x="0.0" y="-68.5" />
+      <point x="0.0" y="35.5" />
+    </edge>
+    <edge source="Entity.Static_Entity.Town" target="Entity.Static_Entity.Static_Entity">
+      <point x="0.0" y="-80.5" />
+      <point x="875.5" y="1014.0" />
+      <point x="912.5250000000001" y="1014.0" />
+      <point x="-65.75" y="24.5" />
+    </edge>
+    <edge source="Tile.WaterTile" target="Tile.Tile">
+      <point x="0.0" y="-36.0" />
+      <point x="61.0" y="2555.0" />
+      <point x="347.9" y="2555.0" />
+      <point x="-79.60000000000002" y="202.0" />
+    </edge>
+    <edge source="State.MenuState" target="State.State">
+      <point x="0.0" y="-58.5" />
+      <point x="1657.5" y="336.0" />
+      <point x="2220.8571428571427" y="336.0" />
+      <point x="-134.14285714285734" y="158.0" />
+    </edge>
+    <edge source="Bullet.Bullet" target="Entity.Entity">
+      <point x="1.1368683772161603E-13" y="-234.5" />
+      <point x="0.0" y="235.0" />
+    </edge>
+    <edge source="Entity.Static_Entity.Tree" target="Entity.Static_Entity.Static_Entity">
+      <point x="0.0" y="-58.0" />
+      <point x="1082.0" y="1014.0" />
+      <point x="1044.025" y="1014.0" />
+      <point x="65.75" y="24.5" />
+    </edge>
+    <edge source="Tile.MountainTile" target="Tile.Tile">
+      <point x="0.0" y="-47.0" />
+      <point x="220.0" y="2565.0" />
+      <point x="387.7" y="2565.0" />
+      <point x="-39.80000000000001" y="202.0" />
+    </edge>
+    <edge source="Entity.Creature.Shooter" target="Entity.Creature.Creature">
+      <point x="0.0" y="-191.0" />
+      <point x="0.0" y="147.0" />
+    </edge>
+    <edge source="State.IntermediateMenuState" target="State.MenuState">
+      <point x="0.0" y="-24.5" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="Entity.Creature.Enemy" target="Entity.Creature.Shooter">
+      <point x="0.0" y="-157.5" />
+      <point x="170.5" y="1446.0" />
+      <point x="230.77500000000003" y="1446.0" />
+      <point x="-70.0" y="191.0" />
+    </edge>
+    <edge source="Tile.SoilTile" target="Tile.Tile">
+      <point x="0.0" y="-36.0" />
+      <point x="612.0" y="2565.0" />
+      <point x="467.3" y="2565.0" />
+      <point x="39.80000000000001" y="202.0" />
+    </edge>
+    <edge source="State.Utils.Levels.Level" target="State.Utils.Levels">
+      <point x="0.0" y="-68.5" />
+      <point x="0.0" y="90.5" />
+    </edge>
+    <edge source="Entity.Creature.Creature" target="Entity.Entity">
+      <point x="0.0" y="-147.0" />
+      <point x="300.77500000000003" y="495.0" />
+      <point x="546.2500000000001" y="495.0" />
+      <point x="-89.0" y="235.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8" x="597.0" y="325.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
